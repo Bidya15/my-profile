@@ -119,8 +119,8 @@ body {
     border-radius: var(--radius); /* Use theme radius */
     border-color: transparent !important; /* Override default card border */
     background-clip: padding-box !important; /* Ensure bg-card is clipped by padding */
-    --glow-color1: hsl(var(--chart-1)); 
-    --glow-color2: hsl(var(--chart-4)); 
+    --glow-color1: hsl(var(--primary)); 
+    --glow-color2: hsl(var(--accent)); 
     transform-style: preserve-3d; 
   }
 
@@ -170,16 +170,6 @@ body {
   .perspective-container {
     perspective: 1000px; 
     transform-style: preserve-3d; /* Children will be transformed in 3D space */
-  }
-
-  /* Marquee Animation for Skills Section */
-  .animate-marquee-ltr {
-    display: flex;
-    animation: marquee-ltr 15s linear infinite; /* Speed increased from 20s to 15s */
-    will-change: transform;
-  }
-  .group:hover .animate-marquee-ltr {
-    animation-play-state: paused;
   }
   
 }
@@ -248,8 +238,19 @@ body {
 
 
 /* Keyframes for Skills Section Marquee */
-@keyframes marquee-ltr {
+/* Marquee animation is now handled by JavaScript in skills-section.tsx */
+/* CSS rules for .animate-marquee-ltr and .group:hover .animate-marquee-ltr might be removable if not used elsewhere */
+/* Keeping them for now in case of other uses, but they don't control the new draggable marquee */
+
+@keyframes marquee-ltr { /* This is likely no longer used by skills-section if JS controls transform */
   0% { transform: translateX(0%); }
-  100% { transform: translateX(-50%); } /* Move by half the width due to duplicated content */
+  100% { transform: translateX(-50%); } 
 }
 
+/* This rule below was previously causing a CSS parsing error and was corrected. */
+/* It's related to pausing a CSS-driven marquee. */
+/* If the marquee is now JS-driven, this specific rule might not be needed for skills, */
+/* but it's correct CSS if used for other CSS-driven marquees. */
+.group:hover .animate-marquee-ltr {
+    animation-play-state: paused;
+}
