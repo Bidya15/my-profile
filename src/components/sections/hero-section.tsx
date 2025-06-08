@@ -11,20 +11,7 @@ export function HeroSection() {
   return (
     <section id="home" className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-background/80 via-muted/70 to-background/80 py-20 pt-28 md:pt-20">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <div className="flex justify-center items-center gap-4 mb-6">
-          <span className="text-5xl font-headline font-bold text-primary">Hi!</span>
-          <div className="animate-avatar-bob">
-            <Image
-              src="https://placehold.co/80x80.png"
-              alt="Avatar"
-              width={80}
-              height={80}
-              className="rounded-full border-4 border-secondary shadow-lg"
-              data-ai-hint="friendly face"
-            />
-          </div>
-        </div>
-
+        {/* "Hi!" and Avatar removed from here */}
         <h1 className="font-headline text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6">
           <span className="block">I&apos;m</span>
           <span className="block animate-text-shimmer bg-gradient-to-r from-primary via-accent to-secondary bg-[length:200%_auto]">
