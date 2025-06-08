@@ -127,7 +127,7 @@ export function SkillsSection() {
   }, []); // Run only once on mount
 
   return (
-    <section id="skills" className="py-16 sm:py-24 bg-muted/50">
+    <section id="skills" className="py-16 sm:py-24 bg-muted/40">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <h2 className="text-3xl sm:text-4xl font-headline font-bold text-center mb-4 text-primary">
           My Tech Stack

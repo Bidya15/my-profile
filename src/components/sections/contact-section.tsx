@@ -57,7 +57,7 @@ export function ContactSection() {
   }
 
   return (
-    <section id="contact" className="py-16 sm:py-24 bg-background">
+    <section id="contact" className="py-16 sm:py-24 bg-background/80">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <h2 className="text-3xl sm:text-4xl font-headline font-bold text-center mb-12 text-primary">
           Get in Touch

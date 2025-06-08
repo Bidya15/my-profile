@@ -7,7 +7,7 @@ import { RESUME_PATH } from '@/lib/data.tsx';
 
 export function HeroSection() {
   return (
-    <section id="home" className="min-h-screen flex items-center justify-center bg-gradient-to-br from-background via-muted to-background py-20 pt-28 md:pt-20">
+    <section id="home" className="min-h-screen flex items-center justify-center bg-gradient-to-br from-background/80 via-muted/70 to-background/80 py-20 pt-28 md:pt-20">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <h1 className="font-headline text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6">
           <span className="block">Hi, I&apos;m</span>

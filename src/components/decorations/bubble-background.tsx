@@ -52,7 +52,7 @@ export function BubbleBackground() {
   }, []);
 
   return (
-    <div className="fixed inset-0 w-full h-full pointer-events-none z-[-10] overflow-hidden">
+    <div className="fixed inset-0 w-full h-full pointer-events-none z-[1] overflow-hidden">
       {bubbles.map((style, i) => (
         <div
           key={i}
