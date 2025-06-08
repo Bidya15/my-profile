@@ -2,6 +2,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Progress } from '@/components/ui/progress';
 import { skillCategories } from '@/lib/data';
 import type { Skill } from '@/lib/data';
+import { cn } from '@/lib/utils';
 
 interface SkillItemProps {
   skill: Skill;
@@ -12,7 +13,7 @@ function SkillItem({ skill }: SkillItemProps) {
     <div className="mb-4 group">
       <div className="flex items-center justify-between mb-1">
         <div className="flex items-center">
-          <skill.Icon className="h-5 w-5 mr-2 text-primary group-hover:text-accent transition-colors" />
+          <skill.Icon className="h-5 w-5 mr-2 text-primary group-hover:text-accent group-hover:scale-125 group-hover:rotate-[10deg] transition-all duration-300" />
           <span className="font-body text-md font-medium text-foreground group-hover:text-accent transition-colors">{skill.name}</span>
         </div>
         {skill.level && <span className="text-sm text-muted-foreground">{skill.level}%</span>}
@@ -33,18 +34,24 @@ export function SkillsSection() {
         </h2>
         <div className="grid md:grid-cols-2 lg:grid-cols-2 gap-8">
           {skillCategories.map((category) => (
-            <Card key={category.title} className="shadow-lg hover:shadow-xl transition-shadow duration-300">
-              <CardHeader>
-                <CardTitle className="font-headline text-2xl text-accent flex items-center">
-                  {/* Icon for category can be added here if desired */}
-                  {category.title}
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                {category.skills.map((skill) => (
-                  <SkillItem key={skill.name} skill={skill} />
-                ))}
-              </CardContent>
+            <Card key={category.title} className={cn(
+              "animated-border-card shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden"
+              // Ensure bg-card from default Card styles applies correctly over the pseudo-elements
+              // The animated-border-card setup uses padding for border and relies on card content having its own bg
+            )}>
+              <div className="bg-card rounded-[calc(var(--radius)-2px)] h-full flex flex-col"> {/* Inner background for content */}
+                <CardHeader>
+                  <CardTitle className="font-headline text-2xl text-accent flex items-center">
+                    {/* Icon for category can be added here if desired */}
+                    {category.title}
+                  </CardTitle>
+                </CardHeader>
+                <CardContent className="flex-grow">
+                  {category.skills.map((skill) => (
+                    <SkillItem key={skill.name} skill={skill} />
+                  ))}
+                </CardContent>
+              </div>
             </Card>
           ))}
         </div>

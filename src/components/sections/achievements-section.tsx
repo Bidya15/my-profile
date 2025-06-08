@@ -17,8 +17,11 @@ export function AchievementsSection() {
         <div className="max-w-3xl mx-auto">
           <ul className="space-y-6">
             {achievementsList.map(achievement => (
-              <li key={achievement.id} className="flex items-start p-4 bg-background rounded-lg shadow-md hover:shadow-lg transition-shadow">
-                <achievement.Icon className="h-8 w-8 text-accent mr-4 mt-1 flex-shrink-0" />
+              <li 
+                key={achievement.id} 
+                className="flex items-start p-4 bg-background rounded-lg shadow-md hover:shadow-lg hover:shadow-primary/20 hover:-translate-y-1 transition-all duration-300"
+              >
+                <achievement.Icon className="h-8 w-8 text-accent mr-4 mt-1 flex-shrink-0 group-hover:scale-110 transition-transform duration-300" />
                 <p className="font-body text-lg text-foreground/90">{achievement.text}</p>
               </li>
             ))}

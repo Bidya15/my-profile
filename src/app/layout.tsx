@@ -5,7 +5,7 @@ import { Toaster } from '@/components/ui/toaster';
 import { cn } from '@/lib/utils';
 
 export const metadata: Metadata = {
-  title: 'DevPort | Bidya S. Rongpi - Full Stack Developer',
+  title: 'BidyaPortfolio | Bidya S. Rongpi - Full Stack Developer',
   description: 'Portfolio of Bidya S. Rongpi, a Full Stack Developer.',
 };
 
