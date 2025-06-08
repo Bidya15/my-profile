@@ -33,7 +33,7 @@ export function Header() {
     >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2 -ml-2"> {/* Added -ml-2 here */}
             <div className="animate-avatar-bob">
               <Image
                 src="https://placehold.co/32x32.png" 
