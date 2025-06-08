@@ -159,8 +159,12 @@ body {
 
   /* Card Orbital Cycle Animation */
   .animate-card-orbital-cycle {
-    animation: card-orbital-cycle 4s ease-in-out infinite; 
+    animation: card-orbital-cycle 6s ease-in-out infinite; /* Increased duration for smoother transitions */
     transform-style: preserve-3d;
+  }
+  
+  .animate-card-orbital-cycle:hover {
+    animation-play-state: paused;
   }
 
   .perspective-container {
@@ -209,29 +213,29 @@ body {
 }
 
 @keyframes card-orbital-cycle {
-  0% { /* Far back left */
-    transform: translateX(-50%) translateZ(-100px) rotateY(-25deg) scale(0.75);
-    opacity: 0.5;
+  0% {
+    transform: translateX(-60%) translateZ(-150px) rotateY(-30deg) scale(0.7);
+    opacity: 0.4;
     z-index: 1;
   }
-  25% { /* Side front left, approaching center */
-    transform: translateX(-20%) translateZ(0px) rotateY(-10deg) scale(0.9);
-    opacity: 0.75;
+  25% {
+    transform: translateX(-25%) translateZ(-50px) rotateY(-15deg) scale(0.85);
+    opacity: 0.7;
     z-index: 5;
   }
   50% { /* Center front, largest and fully visible */
-    transform: translateX(0%) translateZ(50px) rotateY(0deg) scale(1.1);
+    transform: translateX(0%) translateZ(50px) rotateY(0deg) scale(1);
     opacity: 1;
     z-index: 10;
   }
-  75% { /* Side front right, receding from center */
-    transform: translateX(20%) translateZ(0px) rotateY(10deg) scale(0.9);
-    opacity: 0.75;
+  75% {
+    transform: translateX(25%) translateZ(-50px) rotateY(15deg) scale(0.85);
+    opacity: 0.7;
     z-index: 5;
   }
-  100% { /* Far back right */
-    transform: translateX(50%) translateZ(-100px) rotateY(25deg) scale(0.75);
-    opacity: 0.5;
+  100% {
+    transform: translateX(60%) translateZ(-150px) rotateY(30deg) scale(0.7);
+    opacity: 0.4;
     z-index: 1;
   }
 }
