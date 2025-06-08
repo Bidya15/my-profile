@@ -251,27 +251,28 @@ body {
 
 /* Keyframes for Projects Section Cover Flow Animation - More Symmetrical Orbit */
 @keyframes card-orbital-cycle {
-  0%, 100% { /* Center Focus, Front */
+  0%, 100% { /* Center Focus, Front, faces viewer */
     transform: translateX(-50%) translateY(-50%) translateZ(150px) rotateY(0deg) scale(1);
     opacity: 1;
     z-index: 10;
   }
-  25% { /* Right Side */
-    transform: translateX(-50%) translateY(-50%) translateX(150px) translateZ(0px) rotateY(-40deg) scale(0.85);
+  25% { /* Right Side, card faces right */
+    transform: translateX(-50%) translateY(-50%) translateX(150px) translateZ(0px) rotateY(-90deg) scale(0.85);
     opacity: 0.8;
     z-index: 8;
   }
-  50% { /* Back Center */
-    transform: translateX(-50%) translateY(-50%) translateZ(-150px) rotateY(0deg) scale(0.75);
+  50% { /* Back Center, card faces away from viewer (towards orbit center) */
+    transform: translateX(-50%) translateY(-50%) translateZ(-150px) rotateY(-180deg) scale(0.75);
     opacity: 0.7;
     z-index: 5;
   }
-  75% { /* Left Side */
-    transform: translateX(-50%) translateY(-50%) translateX(-150px) translateZ(0px) rotateY(40deg) scale(0.85);
+  75% { /* Left Side, card faces left */
+    transform: translateX(-50%) translateY(-50%) translateX(-150px) translateZ(0px) rotateY(-270deg) scale(0.85);
     opacity: 0.8;
     z-index: 8; 
   }
 }
+
 
 /* 
   The CSS marquee animation (@keyframes marquee-ltr) and its associated hover-pause rule 
