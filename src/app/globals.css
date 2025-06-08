@@ -274,12 +274,6 @@ body {
 }
 
 
-/* 
-  The CSS marquee animation (@keyframes marquee-ltr) and its associated hover-pause rule 
-  (.group:hover .animate-marquee-ltr) have been removed as the Skills section marquee 
-  is now JavaScript-driven and these CSS rules were causing parsing errors and are no longer needed.
-*/
-
 @keyframes float {
   0% {
     transform: translateY(0) translateX(0) scale(0.8);
@@ -326,4 +320,3 @@ body {
       0 0 60px 30px hsla(var(--accent-h), var(--accent-s), calc(var(--accent-l) + 25%), 0);
   }
 }
-
