@@ -241,47 +241,70 @@ body {
 @keyframes float {
   0% {
     transform: translateY(0) translateX(0) scale(0.8);
-    opacity: 0; /* Start invisible and typically off-screen (bottom) */
+    opacity: 0;
     box-shadow: none;
   }
-  10% { /* Start appearing and rising */
-    opacity: 0.7; /* Begin to fade in */
+  10% {
+    opacity: 0.7;
     transform: translateY(-10vh) translateX(calc(var(--float-tx-amp, 2) * 0.5vw)) scale(0.9);
     box-shadow: none;
   }
-  20% { /* Fully visible and rising */
+  20% {
     opacity: 1;
     transform: translateY(-20vh) translateX(calc(var(--float-tx-amp, 2) * 1vw)) scale(1);
   }
-  50% { /* Mid-float, perhaps slightly larger */
+  50% {
     opacity: 1;
     transform: translateY(-60vh) translateX(calc(var(--float-tx-amp, 2) * -1vw)) scale(1.1);
   }
-  90% { /* Nearing the end of float, still fully visible, preparing to burst */
-    opacity: 0.9; /* Still quite visible */
+  90% { /* Bubble intact, just before bursting */
     transform: translateY(-85vh) translateX(calc(var(--float-tx-amp, 2) * 0.5vw)) scale(1.05);
-    box-shadow: none; /* Reset shadow before burst sequence */
+    opacity: 0.9;
+    box-shadow: none; 
   }
-  95% { /* Start of burst glow */
-    transform: translateY(-92vh) translateX(calc(var(--float-tx-amp, 2) * 0.1vw)) scale(1.8);
-    opacity: 0.6;
-    box-shadow: 
-      0 0 10px 4px hsla(var(--primary-h), var(--primary-s), calc(var(--primary-l) + 25%), 0.4),
-      0 0 15px 7px hsla(var(--accent-h), var(--accent-s), calc(var(--accent-l) + 20%), 0.3);
+  94% { /* Bubble at peak, ready to burst */
+    transform: translateY(-90vh) translateX(calc(var(--float-tx-amp, 2) * 0.2vw)) scale(1.1);
+    opacity: 1;
+    box-shadow: none;
   }
-  99% { /* Peak glow and expansion */
-    transform: translateY(-98vh) translateX(calc(var(--float-tx-amp, 2) * -0.1vw)) scale(2.8);
-    opacity: 0.2; /* Bubble body fades fast */
-    box-shadow: 
-      0 0 30px 15px hsla(var(--primary-h), var(--primary-s), calc(var(--primary-l) + 30%), 0.6),
-      0 0 45px 20px hsla(var(--accent-h), var(--accent-s), calc(var(--accent-l) + 25%), 0.4);
+  95% { /* Start of burst - main bubble starts to disappear, fragments appear */
+    transform: translateY(-92vh) translateX(calc(var(--float-tx-amp, 2) * 0.1vw)) scale(0.5); /* Bubble shrinks */
+    opacity: 0.3; /* Main bubble body fades fast */
+    box-shadow:
+      -10px -10px 0px 2px hsla(var(--primary-h), var(--primary-s), calc(var(--primary-l) + 50%), 0.95), /* top-left light */
+      10px -10px 0px 2px hsla(var(--accent-h), var(--accent-s), calc(var(--accent-l) + 45%), 0.95),  /* top-right light */
+      -10px 10px 0px 2px hsla(var(--primary-h), var(--primary-s), calc(var(--primary-l) + 48%), 0.9),/* bottom-left light */
+      10px 10px 0px 2px hsla(var(--accent-h), var(--accent-s), calc(var(--accent-l) + 40%), 0.9), /* bottom-right light */
+      0px -15px 0px 2px hsla(var(--primary-h), var(--primary-s), calc(var(--primary-l) + 50%), 0.95), /* top */
+      15px 0px 0px 2px hsla(var(--accent-h), var(--accent-s), calc(var(--accent-l) + 45%), 0.95),   /* right */
+      0px 15px 0px 2px hsla(var(--primary-h), var(--primary-s), calc(var(--primary-l) + 48%), 0.9),  /* bottom */
+      -15px 0px 0px 2px hsla(var(--accent-h), var(--accent-s), calc(var(--accent-l) + 40%), 0.9); /* left */
   }
-  100% { /* Glow fades out, bubble gone */
-    transform: translateY(-100vh) translateX(calc(var(--float-tx-amp, 2) * -0.2vw)) scale(3);
+  98% { /* Fragments scatter further and fade, main bubble almost gone */
+    transform: translateY(-95vh) translateX(0) scale(0.1); /* Bubble very small */
+    opacity: 0.1;
+    box-shadow:
+      -30px -30px 0px 1px hsla(var(--primary-h), var(--primary-s), calc(var(--primary-l) + 60%), 0.6),
+      30px -30px 0px 1px hsla(var(--accent-h), var(--accent-s), calc(var(--accent-l) + 55%), 0.6),
+      -30px 30px 0px 1px hsla(var(--primary-h), var(--primary-s), calc(var(--primary-l) + 58%), 0.55),
+      30px 30px 0px 1px hsla(var(--accent-h), var(--accent-s), calc(var(--accent-l) + 50%), 0.55),
+      0px -40px 0px 1px hsla(var(--primary-h), var(--primary-s), calc(var(--primary-l) + 60%), 0.6), 
+      40px 0px 0px 1px hsla(var(--accent-h), var(--accent-s), calc(var(--accent-l) + 55%), 0.6),   
+      0px 40px 0px 1px hsla(var(--primary-h), var(--primary-s), calc(var(--primary-l) + 58%), 0.55),  
+      -40px 0px 0px 1px hsla(var(--accent-h), var(--accent-s), calc(var(--accent-l) + 50%), 0.55);
+  }
+  100% { /* Fragments completely gone */
+    transform: translateY(-100vh) translateX(0) scale(0);
     opacity: 0;
-    box-shadow: 
-      0 0 40px 20px hsla(var(--primary-h), var(--primary-s), calc(var(--primary-l) + 30%), 0),
-      0 0 60px 30px hsla(var(--accent-h), var(--accent-s), calc(var(--accent-l) + 25%), 0);
+    box-shadow:
+      -50px -50px 0px 0px hsla(var(--primary-h), var(--primary-s), calc(var(--primary-l) + 70%), 0),
+      50px -50px 0px 0px hsla(var(--accent-h), var(--accent-s), calc(var(--accent-l) + 65%), 0),
+      -50px 50px 0px 0px hsla(var(--primary-h), var(--primary-s), calc(var(--primary-l) + 68%), 0),
+      50px 50px 0px 0px hsla(var(--accent-h), var(--accent-s), calc(var(--accent-l) + 60%), 0),
+      0px -60px 0px 0px hsla(var(--primary-h), var(--primary-s), calc(var(--primary-l) + 70%), 0), 
+      60px 0px 0px 0px hsla(var(--accent-h), var(--accent-s), calc(var(--accent-l) + 65%), 0),   
+      0px 60px 0px 0px hsla(var(--primary-h), var(--primary-s), calc(var(--primary-l) + 68%), 0),  
+      -60px 0px 0px 0px hsla(var(--accent-h), var(--accent-s), calc(var(--accent-l) + 60%), 0);
   }
 }
     
@@ -293,3 +316,4 @@ body {
     transform: translateY(-8px);
   }
 }
+
