@@ -20,7 +20,7 @@ export function ProjectsSection() {
             <Card 
               key={project.id} 
               className={cn(
-                "animated-border-card flex flex-col shadow-lg hover:shadow-xl overflow-hidden animate-card-pulse"
+                "animated-border-card flex flex-col shadow-lg hover:shadow-xl overflow-hidden animate-card-cycle"
               )}
             >
               <div className="bg-transparent rounded-[calc(var(--radius)-2px)] h-full flex flex-col"> {/* Inner background for content */}

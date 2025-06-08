@@ -155,9 +155,9 @@ body {
     animation: spin-slow 5s linear infinite;
   }
 
-  /* Card Pulse Animation */
-  .animate-card-pulse {
-    animation: card-pulse 4s ease-in-out infinite;
+  /* Card Cycle Animation */
+  .animate-card-cycle {
+    animation: new-card-cycle 3s ease-in-out infinite;
   }
 }
 
@@ -199,11 +199,17 @@ body {
   }
 }
 
-@keyframes card-pulse {
+@keyframes new-card-cycle {
   0%, 100% {
     transform: scale(1);
   }
+  25% {
+    transform: scale(1.04); /* Forward */
+  }
   50% {
-    transform: scale(1.03);
+    transform: scale(1.04); /* Hold Forward */
+  }
+  75% {
+    transform: scale(1);    /* Back to original */
   }
 }
