@@ -159,7 +159,6 @@ body {
 
   /* Card Cover Flow Style Animation (for Projects Section) */
   .animate-card-orbital-cycle {
-    /* transform-origin set by centering with left-1/2 top-1/2 and initial translateX/Y in keyframes */
     animation: card-orbital-cycle 10s linear infinite; 
     transform-style: preserve-3d;
   }
@@ -176,7 +175,7 @@ body {
   /* Marquee Animation for Skills Section */
   .animate-marquee-ltr {
     display: flex;
-    animation: marquee-ltr 40s linear infinite;
+    animation: marquee-ltr 20s linear infinite; /* Speed increased from 40s to 20s */
     will-change: transform;
   }
   .group:hover .animate-marquee-ltr {
@@ -223,30 +222,26 @@ body {
   }
 }
 
-/* Keyframes for Projects Section Cover Flow Animation */
+/* Keyframes for Projects Section Cover Flow Animation - No Flipping */
 @keyframes card-orbital-cycle {
-  /* State 1: Center Focus */
-  0%, 100% {
+  0%, 100% { /* Center Focus */
     transform: translateX(-50%) translateY(-50%) translateZ(150px) rotateY(0deg) scale(1);
     opacity: 1;
     z-index: 10;
   }
-  /* State 2: Right Side, Angled */
-  25% {
-    transform: translateX(-50%) translateY(-50%) translateX(60%) translateZ(50px) rotateY(-55deg) scale(0.85);
-    opacity: 0.7;
+  25% { /* Right Side, Angled */
+    transform: translateX(-50%) translateY(-50%) translateX(50%) translateZ(50px) rotateY(-35deg) scale(0.85);
+    opacity: 0.8;
     z-index: 8;
   }
-  /* State 3: Back Center (transition point, could be slightly off-center for asymmetry) */
-  50% {
-    transform: translateX(-50%) translateY(-50%) translateX(0%) translateZ(-150px) rotateY(-180deg) scale(0.6);
-    opacity: 0.4;
+  50% { /* Back Center (not flipped) */
+    transform: translateX(-50%) translateY(-50%) translateZ(-100px) rotateY(0deg) scale(0.7);
+    opacity: 0.5;
     z-index: 5;
   }
-  /* State 4: Left Side, Angled */
-  75% {
-    transform: translateX(-50%) translateY(-50%) translateX(-60%) translateZ(50px) rotateY(55deg) scale(0.85);
-    opacity: 0.7;
+  75% { /* Left Side, Angled */
+    transform: translateX(-50%) translateY(-50%) translateX(-50%) translateZ(50px) rotateY(35deg) scale(0.85);
+    opacity: 0.8;
     z-index: 8; 
   }
 }
