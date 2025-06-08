@@ -5,13 +5,14 @@ import { cn } from '@/lib/utils';
 import type React from 'react';
 
 export function SkillsSection() {
-  const allSkills = skillCategories.flatMap(category => 
+  const allSkills = skillCategories.flatMap(category =>
     category.skills.map(skill => ({
       ...skill,
-      categoryTitle: category.title // Keep category if needed for other logic, though not displayed
+      categoryTitle: category.title
     }))
   );
-  const animationDelayStep = 0.3; // Adjusted for potentially more items in a continuous flow
+  // Adjusted for potentially more items in a continuous flow, and smaller items
+  const animationDelayStep = 0.25; // S_econds, delay between each card starting
 
   return (
     <section id="skills" className="py-16 sm:py-24 bg-muted/50">
@@ -19,16 +20,16 @@ export function SkillsSection() {
         <h2 className="text-3xl sm:text-4xl font-headline font-bold text-center mb-16 text-primary">
           My Tech Stack
         </h2>
-        {/* Removed flex flex-row overflow-x-auto gap-6. Kept perspective-container and vertical alignment/height. */}
-        <div className="relative perspective-container py-8 flex justify-center items-center h-[250px] sm:h-[300px]">
+        {/* Removed flex, justify-center, items-center. Increased height. */}
+        <div className="relative perspective-container py-8 h-[300px] sm:h-[400px]">
           {allSkills.map((skill, index) => (
             <div
-              key={`${skill.name}-${index}`} // Ensure unique key if names repeat across categories
+              key={`${skill.name}-${index}`} // Ensure unique key
               className={cn(
-                "animated-border-card animate-card-orbital-cycle shrink-0 rounded-lg absolute" // Added absolute positioning
+                "animated-border-card animate-card-orbital-cycle shrink-0 rounded-lg absolute"
               )}
               style={{
-                width: '100px', 
+                width: '100px', // Smaller cards for individual skills
                 height: '100px',
                 animationDelay: `${index * animationDelayStep}s`,
                 // Opacity and transform will be handled by the animation itself
