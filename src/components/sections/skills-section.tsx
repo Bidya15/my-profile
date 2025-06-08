@@ -7,6 +7,7 @@ import type { Skill } from '@/lib/data.tsx';
 import { cn } from '@/lib/utils';
 import type React from 'react';
 import { useRef, useState, useEffect, useCallback } from 'react';
+import { Move } from 'lucide-react';
 
 export function SkillsSection() {
   const allSkills = skillCategories.flatMap(category =>
@@ -128,11 +129,11 @@ export function SkillsSection() {
   return (
     <section id="skills" className="py-16 sm:py-24 bg-muted/50">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 className="text-3xl sm:text-4xl font-headline font-bold text-center mb-16 text-primary">
+        <h2 className="text-3xl sm:text-4xl font-headline font-bold text-center mb-4 text-primary">
           My Tech Stack
         </h2>
         <div 
-          className="w-full overflow-hidden group"
+          className="relative w-full overflow-hidden group" // Added relative for positioning the tag
           style={{ cursor: isDragging ? 'grabbing' : 'grab' }}
           onPointerDown={handlePointerDown}
           onPointerMove={handlePointerMove}
@@ -142,8 +143,6 @@ export function SkillsSection() {
           <div 
             ref={marqueeRef}
             className="flex flex-row whitespace-nowrap will-change-transform" 
-            // The 'animate-marquee-ltr' class is no longer used for transform animation here
-            // CSS hover pause for '.animate-marquee-ltr' also won't apply
           >
             {duplicatedSkills.map((skill, index) => (
               <div
@@ -165,6 +164,10 @@ export function SkillsSection() {
                 </div>
               </div>
             ))}
+          </div>
+           <div className="absolute bottom-2 right-2 md:bottom-4 md:right-4 flex items-center space-x-1 px-2 py-1 rounded-full bg-accent/20 text-accent text-xs font-medium backdrop-blur-sm opacity-70 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
+            <Move className="h-3 w-3" />
+            <span>Drag me</span>
           </div>
         </div>
       </div>
