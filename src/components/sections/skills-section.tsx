@@ -165,7 +165,7 @@ export function SkillsSection() {
               </div>
             ))}
           </div>
-           <div className="absolute bottom-2 right-2 md:bottom-4 md:right-4 flex items-center space-x-1 px-2 py-1 rounded-full bg-accent/20 text-accent text-xs font-medium backdrop-blur-sm opacity-70 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
+           <div className="absolute top-2 right-2 md:top-4 md:right-4 flex items-center space-x-1 px-2 py-1 rounded-full bg-accent/20 text-accent text-xs font-medium backdrop-blur-sm opacity-70 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
             <Move className="h-3 w-3" />
             <span>Drag me</span>
           </div>
