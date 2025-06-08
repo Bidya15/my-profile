@@ -193,11 +193,6 @@ body {
     animation-iteration-count: infinite;
     will-change: transform, opacity, box-shadow; 
   }
-
-  /* Horizontal Ping-Pong Marquee Animation */
-  .animate-marquee-ping-pong-rtl {
-    animation: marquee-ping-pong-rtl 25s linear infinite alternate; /* Speed up, alternate direction */
-  }
   
 }
 
@@ -285,11 +280,4 @@ body {
       0 0 60px 30px hsla(var(--accent-h), var(--accent-s), calc(var(--accent-l) + 25%), 0);
   }
 }
-
-/* Keyframes for Horizontal Ping-Pong Marquee (Right-to-Left first) */
-@keyframes marquee-ping-pong-rtl {
-  0% { transform: translateX(-50%); } /* Start with the "second half" of duplicated content visible */
-  100% { transform: translateX(0%); }   /* Scroll right, to show the "first half" of duplicated content */
-}
-
     
