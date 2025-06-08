@@ -193,6 +193,10 @@ body {
     animation-iteration-count: infinite;
     will-change: transform, opacity, box-shadow; 
   }
+
+  .animate-avatar-bob {
+    animation: avatar-bob 2s ease-in-out infinite;
+  }
   
 }
 
@@ -281,3 +285,11 @@ body {
   }
 }
     
+@keyframes avatar-bob {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
