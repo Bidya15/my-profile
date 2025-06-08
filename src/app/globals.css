@@ -262,8 +262,8 @@ body {
     z-index: 8;
   }
   50% { /* Back Center */
-    transform: translateX(-50%) translateY(-50%) translateZ(-150px) rotateY(0deg) scale(0.7);
-    opacity: 0.5;
+    transform: translateX(-50%) translateY(-50%) translateZ(-150px) rotateY(0deg) scale(0.75);
+    opacity: 0.7;
     z-index: 5;
   }
   75% { /* Left Side */
