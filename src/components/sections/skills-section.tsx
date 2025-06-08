@@ -9,11 +9,23 @@ interface SkillItemProps {
 }
 
 function SkillItem({ skill }: SkillItemProps) {
+  const LucideIcon = skill.Icon;
+  const BrandIcon = skill.BrandIconComponent;
+
   return (
     <div className="mb-4 group">
       <div className="flex items-center justify-between mb-1">
         <div className="flex items-center">
-          <skill.Icon className="h-5 w-5 mr-2 text-primary group-hover:text-accent group-hover:scale-125 group-hover:rotate-[10deg] transition-all duration-300" />
+          <div className="h-5 w-5 mr-2 relative flex items-center justify-center">
+            {BrandIcon ? (
+              <>
+                <LucideIcon className="w-full h-full text-primary animate-spin-slow absolute inset-0 transition-opacity duration-300 group-hover:opacity-0" />
+                <BrandIcon className="w-full h-full text-accent animate-spin-slow absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+              </>
+            ) : (
+              <LucideIcon className="w-full h-full text-primary animate-spin-slow transition-all duration-300 group-hover:text-accent group-hover:scale-125 group-hover:rotate-[10deg]" />
+            )}
+          </div>
           <span className="font-body text-md font-medium text-foreground group-hover:text-accent transition-colors">{skill.name}</span>
         </div>
         {skill.level && <span className="text-sm text-muted-foreground">{skill.level}%</span>}
@@ -36,13 +48,10 @@ export function SkillsSection() {
           {skillCategories.map((category) => (
             <Card key={category.title} className={cn(
               "animated-border-card shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden"
-              // Ensure bg-card from default Card styles applies correctly over the pseudo-elements
-              // The animated-border-card setup uses padding for border and relies on card content having its own bg
             )}>
-              <div className="bg-card rounded-[calc(var(--radius)-2px)] h-full flex flex-col"> {/* Inner background for content */}
+              <div className="bg-card rounded-[calc(var(--radius)-2px)] h-full flex flex-col">
                 <CardHeader>
                   <CardTitle className="font-headline text-2xl text-accent flex items-center">
-                    {/* Icon for category can be added here if desired */}
                     {category.title}
                   </CardTitle>
                 </CardHeader>
