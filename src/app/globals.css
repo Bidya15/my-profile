@@ -119,8 +119,8 @@ body {
     border-radius: var(--radius); /* Use theme radius */
     border-color: transparent !important; /* Override default card border */
     background-clip: padding-box !important; /* Ensure bg-card is clipped by padding */
-    --glow-color1: var(--chart-1); 
-    --glow-color2: var(--chart-4); 
+    --glow-color1: hsl(var(--chart-1)); 
+    --glow-color2: hsl(var(--chart-4)); 
     transform-style: preserve-3d; 
   }
 
@@ -209,29 +209,29 @@ body {
 }
 
 @keyframes card-orbital-cycle {
-  0% { /* Start, receded */
-    transform: translateZ(0px) scale(1) rotateY(0deg);
-    opacity: 0.6;
+  0% { /* Far back left */
+    transform: translateX(-50%) translateZ(-100px) rotateY(-25deg) scale(0.75);
+    opacity: 0.5;
     z-index: 1;
   }
-  25% { /* Coming forward, half-rotated */
-    transform: translateZ(25px) scale(1.05) rotateY(180deg);
-    opacity: 0.8;
-    z-index: 5; /* Higher z-index as it comes forward */
+  25% { /* Side front left, approaching center */
+    transform: translateX(-20%) translateZ(0px) rotateY(-10deg) scale(0.9);
+    opacity: 0.75;
+    z-index: 5;
   }
-  50% { /* Peak: fully forward, fully rotated */
-    transform: translateZ(50px) scale(1.1) rotateY(360deg);
+  50% { /* Center front, largest and fully visible */
+    transform: translateX(0%) translateZ(50px) rotateY(0deg) scale(1.1);
     opacity: 1;
-    z-index: 10; /* Highest z-index at peak */
+    z-index: 10;
   }
-  75% { /* Going back, effectively 0deg rotation visually, but receding */
-    transform: translateZ(25px) scale(1.05) rotateY(360deg);
-    opacity: 0.8;
-    z-index: 5; /* Lower z-index as it recedes */
+  75% { /* Side front right, receding from center */
+    transform: translateX(20%) translateZ(0px) rotateY(10deg) scale(0.9);
+    opacity: 0.75;
+    z-index: 5;
   }
-  100% { /* End, receded, visually at 0 rotation */
-    transform: translateZ(0px) scale(1) rotateY(360deg);
-    opacity: 0.6;
+  100% { /* Far back right */
+    transform: translateX(50%) translateZ(-100px) rotateY(25deg) scale(0.75);
+    opacity: 0.5;
     z-index: 1;
   }
 }
