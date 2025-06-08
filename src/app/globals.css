@@ -157,9 +157,9 @@ body {
     animation: spin-slow 5s linear infinite;
   }
 
-  /* Card Orbital Cycle Animation */
+  /* Card Orbital Cycle Animation (for Projects Section) */
   .animate-card-orbital-cycle {
-    animation: card-orbital-cycle 8s linear infinite;
+    animation: card-orbital-cycle 10s linear infinite; /* Slower and smoother */
     transform-style: preserve-3d;
   }
   
@@ -170,6 +170,13 @@ body {
   .perspective-container {
     perspective: 1000px; 
     transform-style: preserve-3d;
+  }
+
+  /* New Marquee Animation for Skills Section */
+  .animate-marquee-ltr {
+    display: flex;
+    animation: marquee-ltr 40s linear infinite;
+    will-change: transform;
   }
   
 }
@@ -212,30 +219,58 @@ body {
   }
 }
 
+/* Keyframes for Projects Section Orbital Animation */
 @keyframes card-orbital-cycle {
-  0% { /* Back-center start */
-    transform: translateX(0px) translateY(0%) translateZ(-150px) rotateY(0deg) scale(0.6);
+  0% {
+    transform: translateX(-35%) translateY(0%) translateZ(-180px) rotateY(0deg) scale(0.6);
     opacity: 0.5;
     z-index: 1;
   }
-  25% { /* Moving to Front-Left, turning */
-    transform: translateX(-120px) translateY(0%) translateZ(-50px) rotateY(90deg) scale(0.8);
+  12.5% { /* Moving to front-left */
+    transform: translateX(-60%) translateY(0%) translateZ(-50px) rotateY(0deg) scale(0.8);
     opacity: 0.7;
     z-index: 3;
   }
-  50% { /* Front Center, facing away if not handled */
-    transform: translateX(0px) translateY(0%) translateZ(80px) rotateY(180deg) scale(1);
+  25% { /* Front-Left */
+    transform: translateX(-50%) translateY(0%) translateZ(80px) rotateY(0deg) scale(1);
     opacity: 1;
     z-index: 5;
   }
-  75% { /* Moving to Front-Right, turning */
-    transform: translateX(120px) translateY(0%) translateZ(-50px) rotateY(270deg) scale(0.8);
+  37.5% { /* Sweeping to front-center */
+     transform: translateX(0%) translateY(0%) translateZ(120px) rotateY(0deg) scale(1.1);
+     opacity: 1;
+     z-index: 6;
+  }
+  50% { /* Front-Center (Peak) */
+    transform: translateX(0%) translateY(0%) translateZ(120px) rotateY(0deg) scale(1.1);
+    opacity: 1;
+    z-index: 6;
+  }
+  62.5% { /* Sweeping to front-right */
+     transform: translateX(50%) translateY(0%) translateZ(80px) rotateY(0deg) scale(1);
+     opacity: 1;
+     z-index: 5;
+  }
+  75% { /* Front-Right */
+    transform: translateX(60%) translateY(0%) translateZ(-50px) rotateY(0deg) scale(0.8);
     opacity: 0.7;
     z-index: 3;
   }
-  100% { /* Back-center end, completing the 360 spin */
-    transform: translateX(0px) translateY(0%) translateZ(-150px) rotateY(360deg) scale(0.6);
+  87.5% { /* Moving to back-center */
+     transform: translateX(35%) translateY(0%) translateZ(-180px) rotateY(0deg) scale(0.6);
+     opacity: 0.5;
+     z-index: 1;
+  }
+  100% { /* Loop to start (Back-Center) */
+    transform: translateX(-35%) translateY(0%) translateZ(-180px) rotateY(0deg) scale(0.6);
     opacity: 0.5;
     z-index: 1;
   }
+}
+
+
+/* New Keyframes for Skills Section Marquee */
+@keyframes marquee-ltr {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-50%); } /* Move by half the width due to duplicated content */
 }
