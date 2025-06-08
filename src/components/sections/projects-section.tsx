@@ -1,3 +1,4 @@
+
 import Image from 'next/image';
 import Link from 'next/link';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
@@ -22,7 +23,7 @@ export function ProjectsSection() {
                 "animated-border-card flex flex-col shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-[1.02] overflow-hidden"
               )}
             >
-              <div className="bg-card rounded-[calc(var(--radius)-2px)] h-full flex flex-col"> {/* Inner background for content */}
+              <div className="bg-transparent rounded-[calc(var(--radius)-2px)] h-full flex flex-col"> {/* Inner background for content */}
                 <div className="relative w-full h-48 sm:h-56 md:h-64">
                   <Image
                     src={project.imageUrl}

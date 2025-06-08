@@ -1,3 +1,4 @@
+
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Progress } from '@/components/ui/progress';
 import { skillCategories } from '@/lib/data.tsx';
@@ -47,9 +48,9 @@ export function SkillsSection() {
         <div className="grid md:grid-cols-2 lg:grid-cols-2 gap-8">
           {skillCategories.map((category) => (
             <Card key={category.title} className={cn(
-              "animated-border-card shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden"
+              "animated-border-card shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-[1.02] overflow-hidden"
             )}>
-              <div className="bg-card rounded-[calc(var(--radius)-2px)] h-full flex flex-col">
+              <div className="bg-transparent rounded-[calc(var(--radius)-2px)] h-full flex flex-col">
                 <CardHeader>
                   <CardTitle className="font-headline text-2xl text-accent flex items-center">
                     {category.title}
