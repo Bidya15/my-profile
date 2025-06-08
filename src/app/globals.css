@@ -20,15 +20,25 @@ body {
 
     --primary: 180 100% 25.1%; /* #008080 Teal */
     --primary-foreground: 0 0% 98%; /* Almost White */
+    --primary-h: 180;
+    --primary-s: 100%;
+    --primary-l: 25.1%;
+
 
     --secondary: 0 0% 96.1%; /* Default ShadCN secondary, can be adjusted if needed */
     --secondary-foreground: 0 0% 9%; /* Default ShadCN secondary foreground */
+    --secondary-h: 0;
+    --secondary-s: 0%;
+    --secondary-l: 96.1%;
 
     --muted: 0 0% 90%; /* Lighter gray for muted elements */
     --muted-foreground: 0 0% 45.1%; /* Default ShadCN muted foreground */
 
     --accent: 207 44% 49%;    /* #4682B4 Blue */
     --accent-foreground: 0 0% 98%; /* Almost White */
+    --accent-h: 207;
+    --accent-s: 44%;
+    --accent-l: 49%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
@@ -66,15 +76,24 @@ body {
 
     --primary: 180 70% 50%; /* Lighter Teal for dark mode */
     --primary-foreground: 0 0% 10%; /* Dark text for contrast */
+    --primary-h: 180;
+    --primary-s: 70%;
+    --primary-l: 50%;
 
     --secondary: 0 0% 14.9%;
     --secondary-foreground: 0 0% 98%;
+    --secondary-h: 0;
+    --secondary-s: 0%;
+    --secondary-l: 14.9%;
 
     --muted: 0 0% 14.9%;
     --muted-foreground: 0 0% 63.9%;
 
     --accent: 207 50% 65%;    /* Lighter Blue for dark mode */
     --accent-foreground: 0 0% 10%; /* Dark text for contrast */
+    --accent-h: 207;
+    --accent-s: 50%;
+    --accent-l: 65%;
 
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 0 0% 98%;
@@ -171,6 +190,17 @@ body {
     perspective: 1000px; 
     transform-style: preserve-3d; /* Children will be transformed in 3D space */
   }
+
+  /* Bubble animation styles */
+  .bubble {
+    position: absolute; 
+    bottom: -150px; 
+    border-radius: 50%;
+    animation-name: float;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+    will-change: transform, opacity; 
+  }
   
 }
 
@@ -236,22 +266,30 @@ body {
   }
 }
 
+/* 
+  The CSS marquee animation (@keyframes marquee-ltr) and its associated hover-pause rule 
+  (.group:hover .animate-marquee-ltr) have been removed as the Skills section marquee 
+  is now JavaScript-driven and these CSS rules were causing parsing errors and are no longer needed.
+*/
 
-/* Keyframes for Skills Section Marquee */
-/* Marquee animation is now handled by JavaScript in skills-section.tsx */
-/* CSS rules for .animate-marquee-ltr and .group:hover .animate-marquee-ltr might be removable if not used elsewhere */
-/* Keeping them for now in case of other uses, but they don't control the new draggable marquee */
-
-@keyframes marquee-ltr { /* This is likely no longer used by skills-section if JS controls transform */
-  0% { transform: translateX(0%); }
-  100% { transform: translateX(-50%); } 
+@keyframes float {
+  0% {
+    transform: translateY(0) translateX(0) scale(0.8);
+    opacity: 0;
+  }
+  10%, 20% {
+    opacity: 1; 
+    transform: translateY(-20vh) translateX(calc(var(--float-tx-amp, 2) * 1vw)) scale(1);
+  }
+  50% {
+    transform: translateY(-60vh) translateX(calc(var(--float-tx-amp, 2) * -1vw)) scale(1.1);
+  }
+  80%, 90% {
+    opacity: 0.5;
+    transform: translateY(-80vh) translateX(calc(var(--float-tx-amp, 2) * 0.5vw)) scale(1.05);
+  }
+  100% {
+    transform: translateY(-100vh) translateX(calc(var(--float-tx-amp, 2) * -0.5vw)) scale(0.8);
+    opacity: 0;
+  }
 }
-
-/* This rule below was previously causing a CSS parsing error and was corrected. */
-/* It's related to pausing a CSS-driven marquee. */
-/* If the marquee is now JS-driven, this specific rule might not be needed for skills, */
-/* but it's correct CSS if used for other CSS-driven marquees. */
-.group:hover .animate-marquee-ltr {
-    animation-play-state: paused;
-}
-
