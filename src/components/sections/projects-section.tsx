@@ -1,4 +1,6 @@
 
+"use client";
+
 import Image from 'next/image';
 import Link from 'next/link';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
@@ -7,24 +9,46 @@ import { Button } from '@/components/ui/button';
 import { Github, ExternalLink } from 'lucide-react';
 import { projects } from '@/lib/data.tsx';
 import { cn } from '@/lib/utils';
+import { useRef } from 'react';
 
 export function ProjectsSection() {
   // Duplicate projects for a seamless marquee effect
-  const displayProjects = [...projects, ...projects];
+  const displayProjects = [...projects, ...projects, ...projects]; // Duplicated thrice for smoother long ping-pong
+  const marqueeTrackRef = useRef<HTMLDivElement>(null);
+
+  const handleCardMouseEnter = () => {
+    if (marqueeTrackRef.current) {
+      marqueeTrackRef.current.style.animationPlayState = 'paused';
+    }
+  };
+
+  const handleCardMouseLeave = () => {
+    if (marqueeTrackRef.current) {
+      marqueeTrackRef.current.style.animationPlayState = 'running';
+    }
+  };
 
   return (
-    <section id="projects" className="py-16 sm:py-24 bg-background/80 group"> {/* Added group for hover pause */}
+    <section id="projects" className="py-16 sm:py-24 bg-background/80">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <h2 className="text-3xl sm:text-4xl font-headline font-bold text-center mb-12 sm:mb-16 text-primary">
           Featured Projects
         </h2>
         <div className="overflow-hidden whitespace-nowrap relative">
-          <div className="flex animate-marquee-ltr py-4">
+          <div
+            ref={marqueeTrackRef}
+            className="flex animate-marquee-ping-pong-rtl py-4" // Use new animation class
+          >
             {displayProjects.map((project, index) => (
-              <div key={`${project.id}-${index}`} className="mx-3 flex-shrink-0"> {/* Wrapper for spacing and shrink prevention */}
+              <div 
+                key={`${project.id}-${index}`} 
+                className="mx-3 flex-shrink-0"
+                onMouseEnter={handleCardMouseEnter}
+                onMouseLeave={handleCardMouseLeave}
+              >
                 <Card
                   className={cn(
-                    "animated-border-card group w-44 xs:w-48 sm:w-52 md:w-60 lg:w-64 shadow-xl flex flex-col h-full" // Ensure cards take full height for consistent alignment
+                    "animated-border-card group w-44 xs:w-48 sm:w-52 md:w-60 lg:w-64 shadow-xl flex flex-col h-full"
                   )}
                 >
                   <div className="bg-card rounded-[calc(var(--radius)-2px)] h-full flex flex-col overflow-hidden transition-all duration-300 group-hover:shadow-lg group-hover:shadow-primary/30 group-hover:-translate-y-1 group-hover:scale-105">
@@ -82,3 +106,5 @@ export function ProjectsSection() {
     </section>
   );
 }
+
+    

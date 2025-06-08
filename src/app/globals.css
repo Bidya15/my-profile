@@ -183,21 +183,6 @@ body {
     animation: spin-slow 5s linear infinite;
   }
 
-  /* Card Cover Flow Style Animation (for Projects Section - Kept for potential reuse) */
-  .animate-card-orbital-cycle {
-    animation: card-orbital-cycle 15s linear infinite; 
-    transform-style: preserve-3d;
-  }
-  
-  .animate-card-orbital-cycle:hover {
-    animation-play-state: paused;
-  }
-
-  .perspective-container {
-    perspective: 1000px; 
-    transform-style: preserve-3d; /* Children will be transformed in 3D space */
-  }
-
   /* Bubble animation styles */
   .bubble {
     position: absolute; 
@@ -209,9 +194,9 @@ body {
     will-change: transform, opacity, box-shadow; 
   }
 
-  /* Horizontal Marquee Animation */
-  .animate-marquee-ltr {
-    animation: marquee-ltr 60s linear infinite; /* Increased duration for smoother/slower scroll with more cards */
+  /* Horizontal Ping-Pong Marquee Animation */
+  .animate-marquee-ping-pong-rtl {
+    animation: marquee-ping-pong-rtl 25s linear infinite alternate; /* Speed up, alternate direction */
   }
   
 }
@@ -253,31 +238,6 @@ body {
     transform: rotate(360deg);
   }
 }
-
-/* Keyframes for Projects Section Cover Flow Animation - Kept for potential reuse */
-@keyframes card-orbital-cycle {
-  0%, 100% { /* Center Focus, Front, faces viewer */
-    transform: translateX(-50%) translateY(-50%) translateZ(150px) rotateY(0deg) scale(1);
-    opacity: 1;
-    z-index: 10;
-  }
-  25% { /* Right Side, card faces right */
-    transform: translateX(-50%) translateY(-50%) translateX(150px) translateZ(0px) rotateY(-90deg) scale(0.85);
-    opacity: 0.8;
-    z-index: 8;
-  }
-  50% { /* Back Center, card faces away from viewer (towards orbit center) */
-    transform: translateX(-50%) translateY(-50%) translateZ(-150px) rotateY(-180deg) scale(0.75);
-    opacity: 0.7;
-    z-index: 5;
-  }
-  75% { /* Left Side, card faces left */
-    transform: translateX(-50%) translateY(-50%) translateX(-150px) translateZ(0px) rotateY(-270deg) scale(0.85);
-    opacity: 0.8;
-    z-index: 8; 
-  }
-}
-
 
 @keyframes float {
   0% {
@@ -326,14 +286,10 @@ body {
   }
 }
 
-/* Keyframes for Horizontal Marquee */
-@keyframes marquee-ltr {
-  0% { transform: translateX(0%); }
-  /* If content is duplicated once (total 2 sets), -50% moves one full set. */
-  100% { transform: translateX(-50%); } 
+/* Keyframes for Horizontal Ping-Pong Marquee (Right-to-Left first) */
+@keyframes marquee-ping-pong-rtl {
+  0% { transform: translateX(-50%); } /* Start with the "second half" of duplicated content visible */
+  100% { transform: translateX(0%); }   /* Scroll right, to show the "first half" of duplicated content */
 }
 
-/* Rule to pause marquee animation on group hover */
-.group:hover .animate-marquee-ltr {
-  animation-play-state: paused;
-}
+    
