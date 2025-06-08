@@ -1,5 +1,6 @@
+
 import type { LucideIcon } from 'lucide-react';
-import { Github, Linkedin, Mail, Twitter, Codepen, Code, Database, Server, Smartphone, Palette, Settings } from 'lucide-react';
+import { Github, Linkedin, Mail, Twitter, Codepen, Code, Database, Server, Smartphone, Palette, Settings, Briefcase, MapPin } from 'lucide-react';
 import React from 'react';
 
 export interface NavItem {
@@ -12,6 +13,7 @@ export const navItems: NavItem[] = [
   { label: 'About', href: '#about' },
   { label: 'Skills', href: '#skills' },
   { label: 'Projects', href: '#projects' },
+  { label: 'Experience', href: '#experience' },
   { label: 'Achievements', href: '#achievements' },
   { label: 'Get in Touch', href: '#contact' },
 ];
@@ -122,7 +124,7 @@ export const projects: Project[] = [
     id: 'project-1',
     title: 'E-commerce Platform',
     description: 'A full-featured e-commerce platform with Next.js, Stripe, and a custom CMS.',
-    imageUrl: 'https://placehold.co/600x400.png',
+    imageUrl: 'https://placehold.co/300x200.png',
     imageHint: 'online store',
     techStack: ['Next.js', 'React', 'Tailwind CSS', 'Stripe', 'MongoDB'],
     githubUrl: 'https://github.com',
@@ -132,7 +134,7 @@ export const projects: Project[] = [
     id: 'project-2',
     title: 'Task Management App',
     description: 'A collaborative task management tool with real-time updates using Firebase.',
-    imageUrl: 'https://placehold.co/600x400.png',
+    imageUrl: 'https://placehold.co/300x200.png',
     imageHint: 'productivity app',
     techStack: ['React', 'Firebase', 'Material UI', 'Node.js'],
     githubUrl: 'https://github.com',
@@ -142,7 +144,7 @@ export const projects: Project[] = [
     id: 'project-3',
     title: 'Portfolio Website',
     description: 'Personal portfolio website showcasing skills and projects, built with Astro and Tailwind CSS.',
-    imageUrl: 'https://placehold.co/600x400.png',
+    imageUrl: 'https://placehold.co/300x200.png',
     imageHint: 'personal website',
     techStack: ['Astro', 'Tailwind CSS', 'TypeScript'],
     githubUrl: 'https://github.com',
@@ -152,13 +154,71 @@ export const projects: Project[] = [
     id: 'project-4',
     title: 'Weather Dashboard',
     description: 'A sleek weather dashboard providing real-time weather information using a third-party API.',
-    imageUrl: 'https://placehold.co/600x400.png',
+    imageUrl: 'https://placehold.co/300x200.png',
     imageHint: 'weather forecast',
     techStack: ['Vue.js', 'OpenWeatherMap API', 'Chart.js'],
     githubUrl: 'https://github.com',
     demoUrl: '#',
   },
 ];
+
+
+export interface Experience {
+  id: string;
+  company: string;
+  title: string;
+  duration: string;
+  location?: string;
+  description: string[];
+  logoUrl?: string;
+  logoHint?: string;
+}
+
+export const experiences: Experience[] = [
+  {
+    id: 'exp1',
+    company: 'Innovate Solutions Ltd.',
+    title: 'Lead Software Engineer',
+    duration: 'June 2022 - Present',
+    location: 'New York, NY',
+    description: [
+      'Led a team of 8 engineers in developing and maintaining flagship SaaS product.',
+      'Redesigned core architecture, improving system performance by 40% and scalability for 2x user growth.',
+      'Implemented CI/CD pipelines, reducing deployment times by 75%.',
+      'Championed Agile methodologies, enhancing team productivity and cross-functional collaboration.',
+    ],
+    logoUrl: 'https://placehold.co/100x100.png',
+    logoHint: 'company logo tech',
+  },
+  {
+    id: 'exp2',
+    company: 'Creative Tech Agency',
+    title: 'Full Stack Developer',
+    duration: 'July 2019 - May 2022',
+    location: 'San Francisco, CA',
+    description: [
+      'Developed responsive web applications for diverse clients using React, Node.js, and Python.',
+      'Integrated third-party APIs for payment gateways, social media, and analytics.',
+      'Contributed to all phases of the SDLC, from requirement gathering to deployment and support.',
+      'Received "Employee of the Year" award in 2021 for outstanding contributions.',
+    ],
+    logoUrl: 'https://placehold.co/100x100.png',
+    logoHint: 'creative agency',
+  },
+  {
+    id: 'exp3',
+    company: 'Web Dev Intern Co.',
+    title: 'Software Development Intern',
+    duration: 'May 2018 - August 2018',
+    location: 'Boston, MA (Remote part-time)',
+    description: [
+      'Assisted senior developers in building and testing new features for a CRM application.',
+      'Gained hands-on experience with JavaScript, HTML, CSS, and version control (Git).',
+      'Participated in daily stand-ups and sprint planning meetings.',
+    ],
+  },
+];
+
 
 export interface SocialLink {
   label: string;
