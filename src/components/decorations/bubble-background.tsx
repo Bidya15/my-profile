@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useEffect, useState } from 'react';
@@ -28,7 +29,7 @@ export function BubbleBackground() {
       ];
 
       for (let i = 0; i < NUM_BUBBLES; i++) {
-        const size = Math.random() * 100 + 30; // 30px to 130px
+        const size = Math.random() * 45 + 15; // 15px to 60px
         const txAmplitude = Math.random() * 5 + 1; // Random amplitude for side sway: 1 to 6
 
         newBubbles.push({

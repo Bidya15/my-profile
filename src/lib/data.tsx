@@ -146,6 +146,7 @@ export const projects: Project[] = [
     imageHint: 'personal website',
     techStack: ['Astro', 'Tailwind CSS', 'TypeScript'],
     githubUrl: 'https://github.com',
+    demoUrl: '#',
   },
    {
     id: 'project-4',
@@ -154,6 +155,7 @@ export const projects: Project[] = [
     imageUrl: 'https://placehold.co/600x400.png',
     imageHint: 'weather forecast',
     techStack: ['Vue.js', 'OpenWeatherMap API', 'Chart.js'],
+    githubUrl: 'https://github.com',
     demoUrl: '#',
   },
 ];
@@ -168,7 +170,7 @@ export const socialLinks: SocialLink[] = [
   { label: 'GitHub', href: 'https://github.com/bidyarongpi', Icon: Github },
   { label: 'LinkedIn', href: 'https://linkedin.com/in/bidyarongpi', Icon: Linkedin },
   { label: 'Twitter', href: 'https://twitter.com/bidyarongpi', Icon: Twitter },
-  { label: 'Email', href: 'mailto:bidya.rongpi@example.com', Icon: Mail },
+  { label: 'Email', href: 'mailto:bidyasingrongpi2004@gmail.com', Icon: Mail },
 ];
 
 export const RESUME_PATH = '/resume.pdf'; // Path to your resume in the public folder
