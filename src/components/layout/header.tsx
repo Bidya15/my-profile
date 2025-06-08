@@ -44,7 +44,7 @@ export function Header() {
                 data-ai-hint="friendly face small"
               />
             </div>
-            <span className="text-lg font-headline font-semibold text-primary opacity-90">Hi!</span>
+            <span className="text-base font-headline font-medium text-primary opacity-90">Hi!</span>
             <Link href="#home" className="text-2xl font-headline font-bold text-primary hover:opacity-80 transition-opacity">
               Bidya
             </Link>
