@@ -275,21 +275,26 @@ body {
 @keyframes float {
   0% {
     transform: translateY(0) translateX(0) scale(0.8);
-    opacity: 0;
+    opacity: 0; /* Start invisible and typically off-screen (bottom) */
   }
-  10%, 20% {
-    opacity: 1; 
+  10% { /* Start appearing and rising */
+    opacity: 0.7; /* Begin to fade in */
+    transform: translateY(-10vh) translateX(calc(var(--float-tx-amp, 2) * 0.5vw)) scale(0.9);
+  }
+  20% { /* Fully visible and rising */
+    opacity: 1;
     transform: translateY(-20vh) translateX(calc(var(--float-tx-amp, 2) * 1vw)) scale(1);
   }
-  50% {
+  50% { /* Mid-float, perhaps slightly larger */
+    opacity: 1;
     transform: translateY(-60vh) translateX(calc(var(--float-tx-amp, 2) * -1vw)) scale(1.1);
   }
-  80%, 90% {
-    opacity: 0.5;
-    transform: translateY(-80vh) translateX(calc(var(--float-tx-amp, 2) * 0.5vw)) scale(1.05);
+  90% { /* Nearing the end of float, still fully visible, preparing to burst */
+    opacity: 0.9; /* Still quite visible */
+    transform: translateY(-85vh) translateX(calc(var(--float-tx-amp, 2) * 0.5vw)) scale(1.05);
   }
-  100% {
-    transform: translateY(-100vh) translateX(calc(var(--float-tx-amp, 2) * -0.5vw)) scale(0.8);
-    opacity: 0;
+  100% { /* Burst effect: rapid scale up and fade out */
+    transform: translateY(-95vh) translateX(calc(var(--float-tx-amp, 2) * -0.2vw)) scale(2.5); /* Significantly larger scale for burst */
+    opacity: 0; /* Fade out completely */
   }
 }
