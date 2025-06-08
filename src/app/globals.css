@@ -175,7 +175,7 @@ body {
   /* Marquee Animation for Skills Section */
   .animate-marquee-ltr {
     display: flex;
-    animation: marquee-ltr 20s linear infinite; /* Speed increased from 40s to 20s */
+    animation: marquee-ltr 15s linear infinite; /* Speed increased from 20s to 15s */
     will-change: transform;
   }
   .group:hover .animate-marquee-ltr {
@@ -222,7 +222,7 @@ body {
   }
 }
 
-/* Keyframes for Projects Section Cover Flow Animation - No Flipping */
+/* Keyframes for Projects Section Cover Flow Animation - No Flipping, Better Alignment */
 @keyframes card-orbital-cycle {
   0%, 100% { /* Center Focus */
     transform: translateX(-50%) translateY(-50%) translateZ(150px) rotateY(0deg) scale(1);
@@ -230,7 +230,7 @@ body {
     z-index: 10;
   }
   25% { /* Right Side, Angled */
-    transform: translateX(-50%) translateY(-50%) translateX(50%) translateZ(50px) rotateY(-35deg) scale(0.85);
+    transform: translateX(-50%) translateY(-50%) translateX(120px) translateZ(50px) rotateY(-40deg) scale(0.85);
     opacity: 0.8;
     z-index: 8;
   }
@@ -240,7 +240,7 @@ body {
     z-index: 5;
   }
   75% { /* Left Side, Angled */
-    transform: translateX(-50%) translateY(-50%) translateX(-50%) translateZ(50px) rotateY(35deg) scale(0.85);
+    transform: translateX(-50%) translateY(-50%) translateX(-120px) translateZ(50px) rotateY(40deg) scale(0.85);
     opacity: 0.8;
     z-index: 8; 
   }
@@ -252,3 +252,4 @@ body {
   0% { transform: translateX(0%); }
   100% { transform: translateX(-50%); } /* Move by half the width due to duplicated content */
 }
+
