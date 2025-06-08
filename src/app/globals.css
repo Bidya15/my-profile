@@ -213,30 +213,29 @@ body {
 }
 
 @keyframes card-orbital-cycle {
-  0% { /* Starts at the right side, slightly smaller and angled */
-    transform: translateX(50%) rotateY(-35deg) scale(0.8);
+  0% { /* Starts at the right side */
+    transform: translateX(50%) rotateY(-35deg) scale(0.8) translateZ(0px);
     opacity: 0.7;
-    z-index: 5;
+    z-index: 3;
   }
   25% { /* Moves to the front, full size, facing viewer */
-    transform: translateX(0%) rotateY(0deg) scale(1);
+    transform: translateX(0%) rotateY(0deg) scale(1) translateZ(50px);
     opacity: 1;
-    z-index: 10;
+    z-index: 5; /* Highest z-index when at front */
   }
-  50% { /* Moves to the left side, slightly smaller and angled */
-    transform: translateX(-50%) rotateY(35deg) scale(0.8);
+  50% { /* Moves to the left side */
+    transform: translateX(-50%) rotateY(35deg) scale(0.8) translateZ(0px);
     opacity: 0.7;
-    z-index: 5;
+    z-index: 3;
   }
   75% { /* Moves to a "behind" position: centered, smaller, less opaque */
-    transform: translateX(0%) rotateY(0deg) scale(0.6); 
-    opacity: 0.5;
-    z-index: 1; /* Ensure it's behind the front/side cards */
+    transform: translateX(0%) rotateY(0deg) scale(0.7) translateZ(-50px); 
+    opacity: 0.6;
+    z-index: 1; /* Lowest z-index when at back */
   }
   100% { /* Returns to the starting position on the right */
-    transform: translateX(50%) rotateY(-35deg) scale(0.8);
+    transform: translateX(50%) rotateY(-35deg) scale(0.8) translateZ(0px);
     opacity: 0.7;
-    z-index: 5;
+    z-index: 3;
   }
 }
-
