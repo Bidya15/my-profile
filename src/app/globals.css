@@ -179,7 +179,7 @@ body {
     animation: marquee-ltr 40s linear infinite;
     will-change: transform;
   }
-  .group-hover\:animation-play-state-paused:hover .animate-marquee-ltr {
+  .group:hover .animate-marquee-ltr {
     animation-play-state: paused;
   }
   
@@ -225,30 +225,29 @@ body {
 
 /* Keyframes for Projects Section Cover Flow Animation */
 @keyframes card-orbital-cycle {
-  0% { /* Main Focus - typically left-ish */
-    transform: translateX(-50%) translateY(-50%) translateX(-35%) translateZ(80px) rotateY(0deg) scale(1);
+  /* State 1: Center Focus */
+  0%, 100% {
+    transform: translateX(-50%) translateY(-50%) translateZ(150px) rotateY(0deg) scale(1);
     opacity: 1;
     z-index: 10;
   }
-  25% { /* Center-Right, text appears mirrored due to rotation */
-    transform: translateX(-50%) translateY(-50%) translateX(0%) translateZ(20px) rotateY(-130deg) scale(0.85);
-    opacity: 0.8;
+  /* State 2: Right Side, Angled */
+  25% {
+    transform: translateX(-50%) translateY(-50%) translateX(60%) translateZ(50px) rotateY(-55deg) scale(0.85);
+    opacity: 0.7;
     z-index: 8;
   }
-  50% { /* Far Right, text mirrored */
-    transform: translateX(-50%) translateY(-50%) translateX(35%) translateZ(-40px) rotateY(-160deg) scale(0.7);
-    opacity: 0.6;
+  /* State 3: Back Center (transition point, could be slightly off-center for asymmetry) */
+  50% {
+    transform: translateX(-50%) translateY(-50%) translateX(0%) translateZ(-150px) rotateY(-180deg) scale(0.6);
+    opacity: 0.4;
     z-index: 5;
   }
-  75% { /* Moving from far left/back, preparing for focus. Text mirrored initially. */
-    transform: translateX(-50%) translateY(-50%) translateX(-80%) translateZ(-100px) rotateY(160deg) scale(0.6);
-    opacity: 0.4;
-    z-index: 1;
-  }
-  100% { /* Loop back to Main Focus */
-    transform: translateX(-50%) translateY(-50%) translateX(-35%) translateZ(80px) rotateY(0deg) scale(1);
-    opacity: 1;
-    z-index: 10;
+  /* State 4: Left Side, Angled */
+  75% {
+    transform: translateX(-50%) translateY(-50%) translateX(-60%) translateZ(50px) rotateY(55deg) scale(0.85);
+    opacity: 0.7;
+    z-index: 8; 
   }
 }
 
