@@ -154,16 +154,7 @@ body {
   .animate-spin-slow {
     animation: spin-slow 5s linear infinite;
   }
-
-  /* Card Sway Cycle Animation */
-  .animate-card-sway-cycle {
-    animation: card-sway-cycle 4s ease-in-out infinite;
-  }
   
-  /* Perspective utility */
-  .apply-perspective {
-    perspective: 1000px;
-  }
 }
 
 /* CSS @property for smoother animation in supporting browsers */
@@ -201,20 +192,5 @@ body {
   }
   to {
     transform: rotate(360deg);
-  }
-}
-
-@keyframes card-sway-cycle {
-  0%, 100% {
-    transform: rotateY(0deg) scale(1);
-  }
-  25% {
-    transform: rotateY(8deg) scale(1.03); /* Swings one way and forward */
-  }
-  50% {
-    transform: rotateY(0deg) scale(1);    /* Returns to center */
-  }
-  75% {
-    transform: rotateY(-8deg) scale(1.03); /* Swings other way and forward */
   }
 }
