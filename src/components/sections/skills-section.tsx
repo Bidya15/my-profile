@@ -40,6 +40,8 @@ function SkillItem({ skill }: SkillItemProps) {
 }
 
 export function SkillsSection() {
+  const animationDelayStep = 1; // seconds, delay between each card starting
+
   return (
     <section id="skills" className="py-16 sm:py-24 bg-muted/50">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -47,10 +49,14 @@ export function SkillsSection() {
           My Skills
         </h2>
         <div className="grid md:grid-cols-2 lg:grid-cols-2 gap-8 perspective-container">
-          {skillCategories.map((category) => (
-            <Card key={category.title} className={cn(
-              "animated-border-card animate-card-orbital-cycle shadow-lg overflow-hidden"
-            )}>
+          {skillCategories.map((category, index) => (
+            <Card 
+              key={category.title} 
+              className={cn(
+                "animated-border-card animate-card-orbital-cycle shadow-lg overflow-hidden"
+              )}
+              style={{ animationDelay: `${index * animationDelayStep}s` }}
+            >
               <div className="bg-transparent rounded-[calc(var(--radius)-2px)] h-full flex flex-col">
                 <CardHeader>
                   <CardTitle className="font-headline text-2xl text-accent flex items-center">

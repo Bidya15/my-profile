@@ -9,6 +9,9 @@ import { projects } from '@/lib/data.tsx';
 import { cn } from '@/lib/utils';
 
 export function ProjectsSection() {
+  const animationBaseDuration = 4; // seconds, matching CSS animation duration
+  const animationDelayStep = 1; // seconds, delay between each card starting
+
   return (
     <section id="projects" className="py-16 sm:py-24 bg-background">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -16,12 +19,13 @@ export function ProjectsSection() {
           Featured Projects
         </h2>
         <div className="grid md:grid-cols-2 lg:grid-cols-2 gap-8 perspective-container">
-          {projects.map((project) => (
+          {projects.map((project, index) => (
             <Card 
               key={project.id} 
               className={cn(
                 "animated-border-card animate-card-orbital-cycle flex flex-col shadow-lg overflow-hidden"
               )}
+              style={{ animationDelay: `${index * animationDelayStep}s` }}
             >
               <div className="bg-transparent rounded-[calc(var(--radius)-2px)] h-full flex flex-col"> {/* Inner background for content */}
                 <div className="relative w-full h-48 sm:h-56 md:h-64">
