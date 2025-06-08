@@ -23,9 +23,9 @@ export function BubbleBackground() {
     const generateBubbles = () => {
       const newBubbles: BubbleStyle[] = [];
       const colors = [
-        'hsla(var(--primary-h), var(--primary-s), var(--primary-l), 0.15)',
-        'hsla(var(--accent-h), var(--accent-s), var(--accent-l), 0.1)',
-        'hsla(var(--secondary-h), var(--secondary-s), var(--secondary-l), 0.12)',
+        'hsla(var(--primary-h), var(--primary-s), var(--primary-l), 0.3)', // Increased opacity
+        'hsla(var(--accent-h), var(--accent-s), var(--accent-l), 0.25)',  // Increased opacity
+        'hsla(var(--secondary-h), var(--secondary-s), var(--secondary-l), 0.28)', // Increased opacity
       ];
 
       for (let i = 0; i < NUM_BUBBLES; i++) {
