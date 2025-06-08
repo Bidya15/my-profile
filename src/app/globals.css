@@ -213,28 +213,28 @@ body {
 }
 
 @keyframes card-orbital-cycle {
-  0% { /* Back Center */
-    transform: translateX(0%) translateY(0%) translateZ(-120px) rotateY(0deg) scale(0.6);
+  0% { /* Back-center start */
+    transform: translateX(0px) translateY(0%) translateZ(-150px) rotateY(0deg) scale(0.6);
     opacity: 0.5;
     z-index: 1;
   }
-  25% { /* Moving to Front-Left */
-    transform: translateX(-60%) translateY(0%) translateZ(-40px) rotateY(20deg) scale(0.8); /* Reduced rotation */
+  25% { /* Moving to Front-Left, turning */
+    transform: translateX(-120px) translateY(0%) translateZ(-50px) rotateY(90deg) scale(0.8);
     opacity: 0.7;
     z-index: 3;
   }
-  50% { /* Front Center */
-    transform: translateX(0%) translateY(0%) translateZ(60px) rotateY(0deg) scale(1);
+  50% { /* Front Center, facing away if not handled */
+    transform: translateX(0px) translateY(0%) translateZ(80px) rotateY(180deg) scale(1);
     opacity: 1;
     z-index: 5;
   }
-  75% { /* Moving to Front-Right */
-    transform: translateX(60%) translateY(0%) translateZ(-40px) rotateY(-20deg) scale(0.8); /* Reduced rotation */
+  75% { /* Moving to Front-Right, turning */
+    transform: translateX(120px) translateY(0%) translateZ(-50px) rotateY(270deg) scale(0.8);
     opacity: 0.7;
     z-index: 3;
   }
-  100% { /* Back Center - same as 0% */
-    transform: translateX(0%) translateY(0%) translateZ(-120px) rotateY(0deg) scale(0.6);
+  100% { /* Back-center end, completing the 360 spin */
+    transform: translateX(0px) translateY(0%) translateZ(-150px) rotateY(360deg) scale(0.6);
     opacity: 0.5;
     z-index: 1;
   }
