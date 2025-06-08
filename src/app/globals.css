@@ -213,29 +213,30 @@ body {
 }
 
 @keyframes card-orbital-cycle {
-  0% { /* Starts at the right side */
-    transform: translateX(50%) rotateY(-35deg) scale(0.8) translateZ(0px);
-    opacity: 0.7;
+  0% { /* Starts at back-left, preparing to move to front-left */
+    transform: translateX(-30%) rotateY(45deg) scale(0.7) translateZ(-70px);
+    opacity: 0.6;
+    z-index: 1;
+  }
+  25% { /* Moves to front-left, begins sweeping right */
+    transform: translateX(-50%) rotateY(35deg) scale(0.85) translateZ(0px);
+    opacity: 0.8;
     z-index: 3;
   }
-  25% { /* Moves to the front, full size, facing viewer */
+  50% { /* At front-center, maximum prominence, moving right */
     transform: translateX(0%) rotateY(0deg) scale(1) translateZ(50px);
     opacity: 1;
     z-index: 5; /* Highest z-index when at front */
   }
-  50% { /* Moves to the left side */
-    transform: translateX(-50%) rotateY(35deg) scale(0.8) translateZ(0px);
-    opacity: 0.7;
+  75% { /* Moves to front-right, starts receding */
+    transform: translateX(50%) rotateY(-35deg) scale(0.85) translateZ(0px);
+    opacity: 0.8;
     z-index: 3;
   }
-  75% { /* Moves to a "behind" position: centered, smaller, less opaque */
-    transform: translateX(0%) rotateY(0deg) scale(0.7) translateZ(-50px); 
+  100% { /* Returns to back-left (completes loop, similar to 0% but after a full cycle) */
+    transform: translateX(-30%) rotateY(45deg) scale(0.7) translateZ(-70px);
     opacity: 0.6;
-    z-index: 1; /* Lowest z-index when at back */
-  }
-  100% { /* Returns to the starting position on the right */
-    transform: translateX(50%) rotateY(-35deg) scale(0.8) translateZ(0px);
-    opacity: 0.7;
-    z-index: 3;
+    z-index: 1;
   }
 }
+
