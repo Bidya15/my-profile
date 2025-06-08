@@ -11,6 +11,10 @@ body {
   :root {
     --background: 0 0% 94.1%; /* #F0F0F0 Light Gray */
     --foreground: 0 0% 13%;   /* #212121 Dark Gray for text */
+    --background-h: 0;
+    --background-s: 0%;
+    --background-l: 94.1%;
+
 
     --card: 0 0% 100%; /* White */
     --card-foreground: 0 0% 13%; /* Dark Gray */
@@ -67,6 +71,9 @@ body {
   .dark {
     --background: 240 6% 10%; /* Dark Gray/Almost Black */
     --foreground: 0 0% 95%;   /* Light Gray for text */
+    --background-h: 240;
+    --background-s: 6%;
+    --background-l: 10%;
 
     --card: 240 6% 12%; /* Slightly lighter than background for cards */
     --card-foreground: 0 0% 95%; /* Light text on cards */
@@ -178,7 +185,7 @@ body {
 
   /* Card Cover Flow Style Animation (for Projects Section) */
   .animate-card-orbital-cycle {
-    animation: card-orbital-cycle 10s linear infinite; 
+    animation: card-orbital-cycle 15s linear infinite; 
     transform-style: preserve-3d;
   }
   
@@ -242,25 +249,25 @@ body {
   }
 }
 
-/* Keyframes for Projects Section Cover Flow Animation - No Flipping, Better Alignment */
+/* Keyframes for Projects Section Cover Flow Animation - More Symmetrical Orbit */
 @keyframes card-orbital-cycle {
-  0%, 100% { /* Center Focus */
+  0%, 100% { /* Center Focus, Front */
     transform: translateX(-50%) translateY(-50%) translateZ(150px) rotateY(0deg) scale(1);
     opacity: 1;
     z-index: 10;
   }
-  25% { /* Right Side, Angled */
-    transform: translateX(-50%) translateY(-50%) translateX(120px) translateZ(50px) rotateY(-40deg) scale(0.85);
+  25% { /* Right Side */
+    transform: translateX(-50%) translateY(-50%) translateX(150px) translateZ(0px) rotateY(-40deg) scale(0.85);
     opacity: 0.8;
     z-index: 8;
   }
-  50% { /* Back Center (not flipped) */
-    transform: translateX(-50%) translateY(-50%) translateZ(-100px) rotateY(0deg) scale(0.7);
+  50% { /* Back Center */
+    transform: translateX(-50%) translateY(-50%) translateZ(-150px) rotateY(0deg) scale(0.7);
     opacity: 0.5;
     z-index: 5;
   }
-  75% { /* Left Side, Angled */
-    transform: translateX(-50%) translateY(-50%) translateX(-120px) translateZ(50px) rotateY(40deg) scale(0.85);
+  75% { /* Left Side */
+    transform: translateX(-50%) translateY(-50%) translateX(-150px) translateZ(0px) rotateY(40deg) scale(0.85);
     opacity: 0.8;
     z-index: 8; 
   }
@@ -318,3 +325,4 @@ body {
       0 0 60px 30px hsla(var(--accent-h), var(--accent-s), calc(var(--accent-l) + 25%), 0);
   }
 }
+
