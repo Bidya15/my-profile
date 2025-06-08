@@ -1,3 +1,4 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -118,8 +119,8 @@ body {
     border-radius: var(--radius); /* Use theme radius */
     border-color: transparent !important; /* Override default card border */
     background-clip: padding-box !important; /* Ensure bg-card is clipped by padding */
-    --glow-color1: hsl(var(--primary));
-    --glow-color2: hsl(var(--accent));
+    --glow-color1: hsl(var(--chart-1)); /* Changed from primary */
+    --glow-color2: hsl(var(--chart-4)); /* Changed from accent */
     transform-style: preserve-3d; /* For 3D animations on the card itself */
   }
 
@@ -209,12 +210,13 @@ body {
 
 @keyframes card-orbital-cycle {
   0% {
-    transform: rotateY(-10deg) scale(0.95) translateZ(-20px);
+    transform: rotateY(-20deg); 
   }
   50% {
-    transform: rotateY(10deg) scale(1.03) translateZ(20px);
+    transform: rotateY(20deg);
   }
   100% {
-    transform: rotateY(-10deg) scale(0.95) translateZ(-20px);
+    transform: rotateY(-20deg);
   }
 }
+
