@@ -233,7 +233,7 @@ body {
     opacity: 0.8;
     z-index: 3;
   }
-  100% { /* Returns to back-left (completes loop, similar to 0% but after a full cycle) */
+  100% { /* Returns to back-left (completes loop, same as 0%) */
     transform: translateX(-30%) rotateY(45deg) scale(0.7) translateZ(-70px);
     opacity: 0.6;
     z-index: 1;
