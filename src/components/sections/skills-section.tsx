@@ -1,76 +1,45 @@
 
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Progress } from '@/components/ui/progress';
 import { skillCategories } from '@/lib/data.tsx';
 import type { Skill } from '@/lib/data.tsx';
 import { cn } from '@/lib/utils';
 import type React from 'react';
 
-interface SkillItemProps {
-  skill: Skill;
-}
-
-function SkillItem({ skill }: SkillItemProps) {
-  const LucideIcon = skill.Icon;
-  const BrandIcon = skill.BrandIconComponent;
-
-  return (
-    <div className="mb-4 group">
-      <div className="flex items-center justify-between mb-1">
-        <div className="flex items-center">
-          <div className="h-5 w-5 mr-2 relative flex items-center justify-center">
-            {BrandIcon ? (
-              <>
-                <LucideIcon className="w-full h-full text-primary animate-spin-slow absolute inset-0 transition-opacity duration-300 group-hover:opacity-0" />
-                <BrandIcon className="w-full h-full text-accent animate-spin-slow absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-              </>
-            ) : (
-              <LucideIcon className="w-full h-full text-primary animate-spin-slow transition-all duration-300 group-hover:text-accent group-hover:scale-125 group-hover:rotate-[10deg]" />
-            )}
-          </div>
-          <span className="font-body text-md font-medium text-foreground group-hover:text-accent transition-colors">{skill.name}</span>
-        </div>
-        {skill.level && <span className="text-sm text-muted-foreground">{skill.level}%</span>}
-      </div>
-      {skill.level && (
-        <Progress value={skill.level} aria-label={`${skill.name} proficiency ${skill.level}%`} className="h-2 [&>div]:bg-primary group-hover:[&>div]:bg-accent transition-colors" />
-      )}
-    </div>
-  );
-}
-
 export function SkillsSection() {
-  const animationBaseDuration = 6; // seconds, matching CSS animation in globals.css
-  const animationDelayStep = 1.5; // seconds, delay between each card starting
+  const allSkills = skillCategories.flatMap(category => category.skills);
+  const animationDelayStep = 0.4; // Adjusted for more items
 
   return (
     <section id="skills" className="py-16 sm:py-24 bg-muted/50">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <h2 className="text-3xl sm:text-4xl font-headline font-bold text-center mb-16 text-primary">
-          My Skills
+          My Tech Stack
         </h2>
-        <div className="flex flex-row overflow-x-auto gap-8 perspective-container py-4">
-          {skillCategories.map((category, index) => (
-            <Card 
-              key={category.title} 
+        <div className="flex flex-row overflow-x-auto gap-6 perspective-container py-8 items-center h-[200px]"> {/* Added fixed height and items-center */}
+          {allSkills.map((skill, index) => (
+            <div
+              key={skill.name}
               className={cn(
-                "animated-border-card animate-card-orbital-cycle shadow-lg overflow-hidden w-[340px] shrink-0"
+                "animated-border-card animate-card-orbital-cycle shrink-0 rounded-lg"
               )}
-              style={{ animationDelay: `${index * animationDelayStep}s` }}
+              style={{ 
+                width: '110px', // Fixed size for smaller items
+                height: '110px',
+                animationDelay: `${index * animationDelayStep}s` 
+              }}
             >
-              <div className="bg-transparent rounded-[calc(var(--radius)-2px)] h-full flex flex-col">
-                <CardHeader>
-                  <CardTitle className="font-headline text-2xl text-accent flex items-center">
-                    {category.title}
-                  </CardTitle>
-                </CardHeader>
-                <CardContent className="flex-grow">
-                  {category.skills.map((skill) => (
-                    <SkillItem key={skill.name} skill={skill} />
-                  ))}
-                </CardContent>
+              <div className="bg-transparent rounded-[calc(var(--radius)-2px)] h-full flex flex-col items-center justify-center p-2 text-center">
+                <div className="relative flex items-center justify-center w-10 h-10 mb-1.5">
+                  {skill.BrandIconComponent ? (
+                    <skill.BrandIconComponent className="w-full h-full text-accent" />
+                  ) : (
+                    <skill.Icon className="w-full h-full text-primary" />
+                  )}
+                </div>
+                <span className="font-body text-xs text-foreground break-words leading-tight">
+                  {skill.name}
+                </span>
               </div>
-            </Card>
+            </div>
           ))}
         </div>
       </div>
