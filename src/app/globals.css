@@ -130,7 +130,7 @@ body {
     top: 0; left: 0; right: 0; bottom: 0;
     border-radius: inherit;
     padding: 2px; 
-    background: conic-gradient(from var(--angle), var(--glow-color1), var(--glow-color2), var(--glow-color1));
+    background: conic-gradient(from var(--angle), var(--glow-color1) 0% 45%, transparent 45% 55%, var(--glow-color2) 55% 100%);
     -webkit-mask:
       linear-gradient(#fff 0 0) content-box,
       linear-gradient(#fff 0 0);
@@ -254,3 +254,4 @@ body {
 .group:hover .animate-marquee-ltr {
     animation-play-state: paused;
 }
+
