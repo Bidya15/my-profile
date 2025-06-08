@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import { ArrowDownToLine, UserCircle } from 'lucide-react';
-import { RESUME_PATH } from '@/lib/data';
+import { RESUME_PATH } from '@/lib/data.tsx';
 
 export function AboutSection() {
   return (

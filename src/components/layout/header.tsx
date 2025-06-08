@@ -5,7 +5,7 @@ import { Menu, X } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { ThemeToggle } from '@/components/theme-toggle';
-import { navItems } from '@/lib/data';
+import { navItems } from '@/lib/data.tsx';
 import { cn } from '@/lib/utils';
 
 export function Header() {

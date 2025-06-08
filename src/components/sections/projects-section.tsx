@@ -4,7 +4,7 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Github, ExternalLink } from 'lucide-react';
-import { projects } from '@/lib/data';
+import { projects } from '@/lib/data.tsx';
 import { cn } from '@/lib/utils';
 
 export function ProjectsSection() {

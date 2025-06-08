@@ -1,7 +1,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Progress } from '@/components/ui/progress';
-import { skillCategories } from '@/lib/data';
-import type { Skill } from '@/lib/data';
+import { skillCategories } from '@/lib/data.tsx';
+import type { Skill } from '@/lib/data.tsx';
 import { cn } from '@/lib/utils';
 
 interface SkillItemProps {

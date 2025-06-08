@@ -17,7 +17,7 @@ import {
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { useToast } from "@/hooks/use-toast"
-import { socialLinks } from '@/lib/data';
+import { socialLinks } from '@/lib/data.tsx';
 import { Send } from "lucide-react"
 
 const formSchema = z.object({

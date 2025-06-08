@@ -3,7 +3,7 @@
 import { Button } from '@/components/ui/button';
 import { ArrowDownToLine, Eye } from 'lucide-react';
 import Link from 'next/link';
-import { RESUME_PATH } from '@/lib/data';
+import { RESUME_PATH } from '@/lib/data.tsx';
 
 export function HeroSection() {
   return (
