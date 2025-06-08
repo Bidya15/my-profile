@@ -37,11 +37,11 @@ body {
     --input: 0 0% 89.8%;
     --ring: 180 100% 25.1%; /* Teal for ring */
 
-    --chart-1: 12 76% 61%;
-    --chart-2: 173 58% 39%;
-    --chart-3: 197 37% 24%;
-    --chart-4: 43 74% 66%;
-    --chart-5: 27 87% 67%;
+    --chart-1: hsl(12 76% 61%);
+    --chart-2: hsl(173 58% 39%);
+    --chart-3: hsl(197 37% 24%);
+    --chart-4: hsl(43 74% 66%);
+    --chart-5: hsl(27 87% 67%);
     --radius: 0.5rem;
 
     --sidebar-background: 0 0% 98%;
@@ -83,11 +83,11 @@ body {
     --input: 0 0% 14.9%;
     --ring: 180 70% 50%; /* Lighter Teal for ring */
     
-    --chart-1: 220 70% 50%;
-    --chart-2: 160 60% 45%;
-    --chart-3: 30 80% 55%;
-    --chart-4: 280 65% 60%;
-    --chart-5: 340 75% 55%;
+    --chart-1: hsl(220 70% 50%);
+    --chart-2: hsl(160 60% 45%);
+    --chart-3: hsl(30 80% 55%);
+    --chart-4: hsl(280 65% 60%);
+    --chart-5: hsl(340 75% 55%);
 
     --sidebar-background: 240 5.9% 10%;
     --sidebar-foreground: 240 4.8% 95.9%;
@@ -119,8 +119,8 @@ body {
     border-radius: var(--radius); /* Use theme radius */
     border-color: transparent !important; /* Override default card border */
     background-clip: padding-box !important; /* Ensure bg-card is clipped by padding */
-    --glow-color1: hsl(var(--chart-1)); 
-    --glow-color2: hsl(var(--chart-4)); 
+    --glow-color1: var(--chart-1); 
+    --glow-color2: var(--chart-4); 
     transform-style: preserve-3d; 
   }
 
@@ -159,12 +159,12 @@ body {
 
   /* Card Orbital Cycle Animation */
   .animate-card-orbital-cycle {
-    animation: card-orbital-cycle 4s ease-in-out infinite; /* Duration of one pulse */
+    animation: card-orbital-cycle 4s ease-in-out infinite; 
     transform-style: preserve-3d;
   }
 
   .perspective-container {
-    perspective: 1000px; /* Adjusted perspective for better 3D effect */
+    perspective: 1000px; 
     transform-style: preserve-3d;
   }
   
@@ -209,14 +209,29 @@ body {
 }
 
 @keyframes card-orbital-cycle {
-  0%, 100% {
-    transform: translateZ(0px) scale(1);
-    opacity: 0.6; /* More faded when in 'back' */
+  0% { /* Start, receded */
+    transform: translateZ(0px) scale(1) rotateY(0deg);
+    opacity: 0.6;
     z-index: 1;
   }
-  50% {
-    transform: translateZ(50px) scale(1.1); /* Moves forward and scales up */
+  25% { /* Coming forward, half-rotated */
+    transform: translateZ(25px) scale(1.05) rotateY(180deg);
+    opacity: 0.8;
+    z-index: 5; /* Higher z-index as it comes forward */
+  }
+  50% { /* Peak: fully forward, fully rotated */
+    transform: translateZ(50px) scale(1.1) rotateY(360deg);
     opacity: 1;
-    z-index: 10; /* Ensure it's on top when forward */
+    z-index: 10; /* Highest z-index at peak */
+  }
+  75% { /* Going back, effectively 0deg rotation visually, but receding */
+    transform: translateZ(25px) scale(1.05) rotateY(360deg);
+    opacity: 0.8;
+    z-index: 5; /* Lower z-index as it recedes */
+  }
+  100% { /* End, receded, visually at 0 rotation */
+    transform: translateZ(0px) scale(1) rotateY(360deg);
+    opacity: 0.6;
+    z-index: 1;
   }
 }
