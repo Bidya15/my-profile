@@ -155,9 +155,14 @@ body {
     animation: spin-slow 5s linear infinite;
   }
 
-  /* Card Cycle Animation */
-  .animate-card-cycle {
-    animation: new-card-cycle 3s ease-in-out infinite;
+  /* Card Sway Cycle Animation */
+  .animate-card-sway-cycle {
+    animation: card-sway-cycle 4s ease-in-out infinite;
+  }
+  
+  /* Perspective utility */
+  .apply-perspective {
+    perspective: 1000px;
   }
 }
 
@@ -199,17 +204,17 @@ body {
   }
 }
 
-@keyframes new-card-cycle {
+@keyframes card-sway-cycle {
   0%, 100% {
-    transform: scale(1);
+    transform: rotateY(0deg) scale(1);
   }
   25% {
-    transform: scale(1.04); /* Forward */
+    transform: rotateY(8deg) scale(1.03); /* Swings one way and forward */
   }
   50% {
-    transform: scale(1.04); /* Hold Forward */
+    transform: rotateY(0deg) scale(1);    /* Returns to center */
   }
   75% {
-    transform: scale(1);    /* Back to original */
+    transform: rotateY(-8deg) scale(1.03); /* Swings other way and forward */
   }
 }
