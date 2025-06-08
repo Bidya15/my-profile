@@ -213,29 +213,29 @@ body {
 }
 
 @keyframes card-orbital-cycle {
-  0% {
-    transform: translateX(-60%) translateZ(-150px) rotateY(-30deg) scale(0.7);
-    opacity: 0.6; /* Increased visibility */
+  0% { /* Furthest back, slightly left */
+    transform: translateX(-30%) translateZ(-100px) rotateY(-20deg) scale(0.8);
+    opacity: 0.6;
     z-index: 1;
   }
-  25% {
-    transform: translateX(-25%) translateZ(-50px) rotateY(-15deg) scale(0.85);
-    opacity: 0.8; /* Slightly increased */
+  25% { /* Approaching front from left */
+    transform: translateX(-15%) translateZ(-30px) rotateY(-10deg) scale(0.9);
+    opacity: 0.8;
     z-index: 5;
   }
-  50% { /* Center front, largest and fully visible */
-    transform: translateX(0%) translateZ(50px) rotateY(0deg) scale(1);
+  50% { /* Center front */
+    transform: translateX(0%) translateZ(30px) rotateY(0deg) scale(1);
     opacity: 1;
     z-index: 10;
   }
-  75% {
-    transform: translateX(25%) translateZ(-50px) rotateY(15deg) scale(0.85);
-    opacity: 0.8; /* Slightly increased */
+  75% { /* Receding to right */
+    transform: translateX(15%) translateZ(-30px) rotateY(10deg) scale(0.9);
+    opacity: 0.8;
     z-index: 5;
   }
-  100% {
-    transform: translateX(60%) translateZ(-150px) rotateY(30deg) scale(0.7);
-    opacity: 0.6; /* Increased visibility */
+  100% { /* Furthest back, slightly right */
+    transform: translateX(30%) translateZ(-100px) rotateY(20deg) scale(0.8);
+    opacity: 0.6;
     z-index: 1;
   }
 }
