@@ -183,7 +183,7 @@ body {
     animation: spin-slow 5s linear infinite;
   }
 
-  /* Card Cover Flow Style Animation (for Projects Section) */
+  /* Card Cover Flow Style Animation (for Projects Section - Kept for potential reuse) */
   .animate-card-orbital-cycle {
     animation: card-orbital-cycle 15s linear infinite; 
     transform-style: preserve-3d;
@@ -207,6 +207,11 @@ body {
     animation-timing-function: ease-in-out;
     animation-iteration-count: infinite;
     will-change: transform, opacity, box-shadow; 
+  }
+
+  /* Horizontal Marquee Animation */
+  .animate-marquee-ltr {
+    animation: marquee-ltr 60s linear infinite; /* Increased duration for smoother/slower scroll with more cards */
   }
   
 }
@@ -249,7 +254,7 @@ body {
   }
 }
 
-/* Keyframes for Projects Section Cover Flow Animation - More Symmetrical Orbit */
+/* Keyframes for Projects Section Cover Flow Animation - Kept for potential reuse */
 @keyframes card-orbital-cycle {
   0%, 100% { /* Center Focus, Front, faces viewer */
     transform: translateX(-50%) translateY(-50%) translateZ(150px) rotateY(0deg) scale(1);
@@ -319,4 +324,16 @@ body {
       0 0 40px 20px hsla(var(--primary-h), var(--primary-s), calc(var(--primary-l) + 30%), 0),
       0 0 60px 30px hsla(var(--accent-h), var(--accent-s), calc(var(--accent-l) + 25%), 0);
   }
+}
+
+/* Keyframes for Horizontal Marquee */
+@keyframes marquee-ltr {
+  0% { transform: translateX(0%); }
+  /* If content is duplicated once (total 2 sets), -50% moves one full set. */
+  100% { transform: translateX(-50%); } 
+}
+
+/* Rule to pause marquee animation on group hover */
+.group:hover .animate-marquee-ltr {
+  animation-play-state: paused;
 }
