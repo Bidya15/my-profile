@@ -120,6 +120,7 @@ body {
     background-clip: padding-box !important; /* Ensure bg-card is clipped by padding */
     --glow-color1: hsl(var(--primary));
     --glow-color2: hsl(var(--accent));
+    transform-style: preserve-3d; /* For 3D animations on the card itself */
   }
 
   .animated-border-card::before {
@@ -153,6 +154,17 @@ body {
   /* Slow Spin Animation */
   .animate-spin-slow {
     animation: spin-slow 5s linear infinite;
+  }
+
+  /* Card Orbital Cycle Animation */
+  .animate-card-orbital-cycle {
+    animation: card-orbital-cycle 7s ease-in-out infinite;
+    transform-style: preserve-3d;
+  }
+
+  .perspective-container {
+    perspective: 1500px;
+    transform-style: preserve-3d;
   }
   
 }
@@ -192,5 +204,17 @@ body {
   }
   to {
     transform: rotate(360deg);
+  }
+}
+
+@keyframes card-orbital-cycle {
+  0% {
+    transform: perspective(1000px) rotateY(-8deg) scale(0.95) translateZ(-20px);
+  }
+  50% {
+    transform: perspective(1000px) rotateY(8deg) scale(1.03) translateZ(20px);
+  }
+  100% {
+    transform: perspective(1000px) rotateY(-8deg) scale(0.95) translateZ(-20px);
   }
 }

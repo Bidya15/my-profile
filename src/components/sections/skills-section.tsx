@@ -46,10 +46,10 @@ export function SkillsSection() {
         <h2 className="text-3xl sm:text-4xl font-headline font-bold text-center mb-16 text-primary">
           My Skills
         </h2>
-        <div className="grid md:grid-cols-2 lg:grid-cols-2 gap-8">
+        <div className="grid md:grid-cols-2 lg:grid-cols-2 gap-8 perspective-container">
           {skillCategories.map((category) => (
             <Card key={category.title} className={cn(
-              "animated-border-card shadow-lg hover:shadow-xl overflow-hidden"
+              "animated-border-card animate-card-orbital-cycle shadow-lg overflow-hidden"
             )}>
               <div className="bg-transparent rounded-[calc(var(--radius)-2px)] h-full flex flex-col">
                 <CardHeader>
