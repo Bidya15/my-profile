@@ -154,6 +154,11 @@ body {
   .animate-spin-slow {
     animation: spin-slow 5s linear infinite;
   }
+
+  /* Card Pulse Animation */
+  .animate-card-pulse {
+    animation: card-pulse 4s ease-in-out infinite;
+  }
 }
 
 /* CSS @property for smoother animation in supporting browsers */
@@ -191,5 +196,14 @@ body {
   }
   to {
     transform: rotate(360deg);
+  }
+}
+
+@keyframes card-pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.03);
   }
 }

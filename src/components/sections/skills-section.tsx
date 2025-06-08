@@ -48,7 +48,7 @@ export function SkillsSection() {
         <div className="grid md:grid-cols-2 lg:grid-cols-2 gap-8">
           {skillCategories.map((category) => (
             <Card key={category.title} className={cn(
-              "animated-border-card shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-[1.02] overflow-hidden"
+              "animated-border-card shadow-lg hover:shadow-xl overflow-hidden animate-card-pulse"
             )}>
               <div className="bg-transparent rounded-[calc(var(--radius)-2px)] h-full flex flex-col">
                 <CardHeader>
