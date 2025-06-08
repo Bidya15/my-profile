@@ -15,7 +15,7 @@ export function AboutSection() {
           <div className="md:col-span-1 flex justify-center">
             <div className="relative w-48 h-48 sm:w-64 sm:h-64 rounded-full overflow-hidden shadow-xl border-4 border-primary/50">
               <Image
-                src="https://placehold.co/256x256.png"
+                src="/bidya-profile.jpg"
                 alt="Bidya S. Rongpi"
                 layout="fill"
                 objectFit="cover"
