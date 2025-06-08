@@ -6,27 +6,121 @@ import Link from 'next/link';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { Github, ExternalLink } from 'lucide-react';
+import { Github, ExternalLink, Move } from 'lucide-react'; // Added Move
 import { projects } from '@/lib/data.tsx';
 import { cn } from '@/lib/utils';
-import { useRef } from 'react';
+import { useRef, useState, useEffect, useCallback } from 'react'; // Added useState, useEffect, useCallback
 
 export function ProjectsSection() {
   // Duplicate projects for a seamless marquee effect
-  const displayProjects = [...projects, ...projects, ...projects]; // Duplicated thrice for smoother long ping-pong
+  const displayProjects = [...projects, ...projects, ...projects]; 
   const marqueeTrackRef = useRef<HTMLDivElement>(null);
+  const viewportRef = useRef<HTMLDivElement>(null);
 
-  const handleCardMouseEnter = () => {
+  const [isDragging, setIsDragging] = useState(false);
+  const dragAnchorX = useRef(0); // Mouse X position at drag start
+  const scrollAnchorX = useRef(0); // scrollLeft (offsetX) at drag start
+  const offsetX = useRef(0); // Current translateX value for the marquee content
+  const DRAG_SENSITIVITY = 1.5; // Multiplier for drag distance
+
+  // Set initial position to show the "middle" set of duplicated skills
+  useEffect(() => {
     if (marqueeTrackRef.current) {
-      marqueeTrackRef.current.style.animationPlayState = 'paused';
+        const contentSetWidth = marqueeTrackRef.current.scrollWidth / 3;
+        offsetX.current = -contentSetWidth;
+        marqueeTrackRef.current.style.transform = `translateX(${offsetX.current}px)`;
+    }
+  }, []);
+
+  const handlePointerDown = (e: React.PointerEvent<HTMLDivElement>) => {
+    if (!marqueeTrackRef.current || !viewportRef.current) return;
+    setIsDragging(true);
+    dragAnchorX.current = e.clientX;
+    scrollAnchorX.current = offsetX.current;
+    viewportRef.current.style.cursor = 'grabbing';
+    if(marqueeTrackRef.current) {
+      marqueeTrackRef.current.style.transition = 'none'; // Disable transition during drag for responsiveness
+    }
+    e.currentTarget.setPointerCapture(e.pointerId); // Capture pointer for consistent events
+  };
+
+  const handlePointerMove = useCallback((e: React.PointerEvent<HTMLDivElement>) => {
+    if (!isDragging || !marqueeTrackRef.current) return;
+    // e.preventDefault(); // Already on viewport, so might not be needed unless issues
+    
+    const deltaX = e.clientX - dragAnchorX.current;
+    let newOffsetX = scrollAnchorX.current + deltaX * DRAG_SENSITIVITY;
+
+    const contentSetWidth = marqueeTrackRef.current.scrollWidth / 3;
+
+    // Infinite scroll illusion logic: Re-adjust offsetX and scrollAnchorX if scrolled too far
+    if (newOffsetX > 0) { 
+        newOffsetX -= contentSetWidth;
+        scrollAnchorX.current -= contentSetWidth; 
+    } else if (newOffsetX < -contentSetWidth * 2) { 
+        newOffsetX += contentSetWidth;
+        scrollAnchorX.current += contentSetWidth;
+    }
+    
+    offsetX.current = newOffsetX;
+    marqueeTrackRef.current.style.transform = `translateX(${offsetX.current}px)`;
+  }, [isDragging, DRAG_SENSITIVITY]);
+
+
+  const handlePointerUpOrLeave = (e: React.PointerEvent<HTMLDivElement>) => {
+    if (isDragging) {
+      setIsDragging(false);
+      if (viewportRef.current) {
+        viewportRef.current.style.cursor = 'grab';
+      }
+      // Optional: Add a subtle coasting effect by re-enabling transition
+      // if (marqueeTrackRef.current) {
+      //   marqueeTrackRef.current.style.transition = 'transform 0.2s ease-out';
+      // }
+      e.currentTarget.releasePointerCapture(e.pointerId);
     }
   };
 
-  const handleCardMouseLeave = () => {
-    if (marqueeTrackRef.current) {
-      marqueeTrackRef.current.style.animationPlayState = 'running';
+  // Effect for global listeners to handle dragging outside the component bounds
+   useEffect(() => {
+    const currentViewport = viewportRef.current; // Capture current value for cleanup
+
+    const onMove = (event: PointerEvent) => {
+      if (isDragging) {
+        // Synthesize a React.PointerEvent like object if needed by handlePointerMove, 
+        // or ensure handlePointerMove can work with native PointerEvent
+         const syntheticEvent = event as unknown as React.PointerEvent<HTMLDivElement>;
+         handlePointerMove(syntheticEvent);
+      }
+    };
+
+    const onUp = (event: PointerEvent) => {
+      if (isDragging) {
+         const syntheticEvent = event as unknown as React.PointerEvent<HTMLDivElement>;
+        // If handlePointerUpOrLeave is attached to viewportRef, it needs to be called directly
+        // For simplicity, we directly call the logic here or ensure it's callable.
+        setIsDragging(false);
+        if (currentViewport) { // Check if currentViewport is not null
+            currentViewport.style.cursor = 'grab';
+        }
+        // No direct need for e.currentTarget.releasePointerCapture if using document
+      }
+    };
+    
+    if (isDragging) {
+      document.addEventListener('pointermove', onMove);
+      document.addEventListener('pointerup', onUp);
     }
-  };
+
+    return () => {
+      document.removeEventListener('pointermove', onMove);
+      document.removeEventListener('pointerup', onUp);
+       if (isDragging && currentViewport) { // Clean up cursor if drag ends due to unmount
+           currentViewport.style.cursor = 'grab';
+       }
+    };
+  }, [isDragging, handlePointerMove]);
+
 
   return (
     <section id="projects" className="py-16 sm:py-24 bg-background/80">
@@ -34,17 +128,24 @@ export function ProjectsSection() {
         <h2 className="text-3xl sm:text-4xl font-headline font-bold text-center mb-12 sm:mb-16 text-primary">
           Featured Projects
         </h2>
-        <div className="overflow-hidden whitespace-nowrap relative">
+        <div
+          ref={viewportRef}
+          className="overflow-hidden whitespace-nowrap relative group" // Added group for "Drag me"
+          style={{ cursor: isDragging ? 'grabbing' : 'grab', touchAction: 'pan-y' }} // touchAction for better mobile scroll
+          onPointerDown={handlePointerDown}
+          onPointerMove={isDragging ? handlePointerMove : undefined} // Only handle move if dragging
+          onPointerUp={handlePointerUpOrLeave}
+          onPointerLeave={handlePointerUpOrLeave} // Handle if mouse leaves component while dragging
+        >
           <div
             ref={marqueeTrackRef}
-            className="flex animate-marquee-ping-pong-rtl py-4" // Use new animation class
+            className="flex py-4 will-change-transform" // Removed animation class
           >
             {displayProjects.map((project, index) => (
               <div 
                 key={`${project.id}-${index}`} 
                 className="mx-3 flex-shrink-0"
-                onMouseEnter={handleCardMouseEnter}
-                onMouseLeave={handleCardMouseLeave}
+                style={{ userSelect: 'none' }} // Prevent text selection on cards during drag
               >
                 <Card
                   className={cn(
@@ -60,6 +161,7 @@ export function ProjectsSection() {
                         objectFit="cover"
                         className="transition-transform duration-500"
                         data-ai-hint={project.imageHint}
+                        draggable="false" // Prevent image dragging
                       />
                     </div>
                     <CardHeader className="pt-1.5 pb-0 xs:pt-2 xs:pb-0.5 flex-shrink-0 px-1.5 sm:px-2">
@@ -101,10 +203,12 @@ export function ProjectsSection() {
               </div>
             ))}
           </div>
+          <div className="absolute top-2 right-2 md:top-4 md:right-4 flex items-center space-x-1 px-2 py-1 rounded-full bg-accent/20 text-accent text-xs font-medium backdrop-blur-sm opacity-70 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
+            <Move className="h-3 w-3" />
+            <span>Drag me</span>
+          </div>
         </div>
       </div>
     </section>
   );
 }
-
-    
