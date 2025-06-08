@@ -157,9 +157,10 @@ body {
     animation: spin-slow 5s linear infinite;
   }
 
-  /* Card Orbital Cycle Animation (for Projects Section) */
+  /* Card Cover Flow Style Animation (for Projects Section) */
   .animate-card-orbital-cycle {
-    animation: card-orbital-cycle 10s linear infinite; /* Slower and smoother */
+    /* transform-origin set by centering with left-1/2 top-1/2 and initial translateX/Y in keyframes */
+    animation: card-orbital-cycle 10s linear infinite; 
     transform-style: preserve-3d;
   }
   
@@ -169,14 +170,17 @@ body {
 
   .perspective-container {
     perspective: 1000px; 
-    transform-style: preserve-3d;
+    transform-style: preserve-3d; /* Children will be transformed in 3D space */
   }
 
-  /* New Marquee Animation for Skills Section */
+  /* Marquee Animation for Skills Section */
   .animate-marquee-ltr {
     display: flex;
     animation: marquee-ltr 40s linear infinite;
     will-change: transform;
+  }
+  .group-hover\:animation-play-state-paused:hover .animate-marquee-ltr {
+    animation-play-state: paused;
   }
   
 }
@@ -219,57 +223,37 @@ body {
   }
 }
 
-/* Keyframes for Projects Section Orbital Animation */
+/* Keyframes for Projects Section Cover Flow Animation */
 @keyframes card-orbital-cycle {
-  0% {
-    transform: translateX(-35%) translateY(0%) translateZ(-180px) rotateY(0deg) scale(0.6);
-    opacity: 0.5;
-    z-index: 1;
-  }
-  12.5% { /* Moving to front-left */
-    transform: translateX(-60%) translateY(0%) translateZ(-50px) rotateY(0deg) scale(0.8);
-    opacity: 0.7;
-    z-index: 3;
-  }
-  25% { /* Front-Left */
-    transform: translateX(-50%) translateY(0%) translateZ(80px) rotateY(0deg) scale(1);
+  0% { /* Main Focus - typically left-ish */
+    transform: translateX(-50%) translateY(-50%) translateX(-35%) translateZ(80px) rotateY(0deg) scale(1);
     opacity: 1;
+    z-index: 10;
+  }
+  25% { /* Center-Right, text appears mirrored due to rotation */
+    transform: translateX(-50%) translateY(-50%) translateX(0%) translateZ(20px) rotateY(-130deg) scale(0.85);
+    opacity: 0.8;
+    z-index: 8;
+  }
+  50% { /* Far Right, text mirrored */
+    transform: translateX(-50%) translateY(-50%) translateX(35%) translateZ(-40px) rotateY(-160deg) scale(0.7);
+    opacity: 0.6;
     z-index: 5;
   }
-  37.5% { /* Sweeping to front-center */
-     transform: translateX(0%) translateY(0%) translateZ(120px) rotateY(0deg) scale(1.1);
-     opacity: 1;
-     z-index: 6;
-  }
-  50% { /* Front-Center (Peak) */
-    transform: translateX(0%) translateY(0%) translateZ(120px) rotateY(0deg) scale(1.1);
-    opacity: 1;
-    z-index: 6;
-  }
-  62.5% { /* Sweeping to front-right */
-     transform: translateX(50%) translateY(0%) translateZ(80px) rotateY(0deg) scale(1);
-     opacity: 1;
-     z-index: 5;
-  }
-  75% { /* Front-Right */
-    transform: translateX(60%) translateY(0%) translateZ(-50px) rotateY(0deg) scale(0.8);
-    opacity: 0.7;
-    z-index: 3;
-  }
-  87.5% { /* Moving to back-center */
-     transform: translateX(35%) translateY(0%) translateZ(-180px) rotateY(0deg) scale(0.6);
-     opacity: 0.5;
-     z-index: 1;
-  }
-  100% { /* Loop to start (Back-Center) */
-    transform: translateX(-35%) translateY(0%) translateZ(-180px) rotateY(0deg) scale(0.6);
-    opacity: 0.5;
+  75% { /* Moving from far left/back, preparing for focus. Text mirrored initially. */
+    transform: translateX(-50%) translateY(-50%) translateX(-80%) translateZ(-100px) rotateY(160deg) scale(0.6);
+    opacity: 0.4;
     z-index: 1;
+  }
+  100% { /* Loop back to Main Focus */
+    transform: translateX(-50%) translateY(-50%) translateX(-35%) translateZ(80px) rotateY(0deg) scale(1);
+    opacity: 1;
+    z-index: 10;
   }
 }
 
 
-/* New Keyframes for Skills Section Marquee */
+/* Keyframes for Skills Section Marquee */
 @keyframes marquee-ltr {
   0% { transform: translateX(0%); }
   100% { transform: translateX(-50%); } /* Move by half the width due to duplicated content */

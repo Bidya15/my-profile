@@ -9,61 +9,71 @@ import { projects } from '@/lib/data.tsx';
 import { cn } from '@/lib/utils';
 
 export function ProjectsSection() {
-  const animationBaseDuration = 6; // seconds, matching CSS animation duration in globals.css
-  const animationDelayStep = 1.5; // seconds, delay between each card starting, adjust for desired overlap
+  const animationBaseDuration = 10; // Must match the duration in globals.css @keyframes card-orbital-cycle
+  const animationDelayStep = animationBaseDuration / projects.length;
 
   return (
-    <section id="projects" className="py-16 sm:py-24 bg-background">
+    <section id="projects" className="py-16 sm:py-24 bg-background overflow-hidden">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <h2 className="text-3xl sm:text-4xl font-headline font-bold text-center mb-16 text-primary">
           Featured Projects
         </h2>
-        <div className="flex flex-row overflow-x-auto gap-8 perspective-container py-4">
+        {/* Container for the 3D animation context */}
+        <div className="relative w-full h-[480px] sm:h-[520px] md:h-[560px] perspective-container">
           {projects.map((project, index) => (
             <Card 
               key={project.id} 
               className={cn(
-                "animated-border-card animate-card-orbital-cycle flex flex-col shadow-lg overflow-hidden w-[340px] shrink-0"
+                "animated-border-card animate-card-orbital-cycle flex flex-col shadow-xl", // Removed shadow-lg as animated-border provides effect
+                "absolute left-1/2 top-1/2", // Position origin at center for transforms
+                "w-[280px] h-[380px] sm:w-[320px] sm:h-[420px] md:w-[340px] md:h-[450px]" // Fixed card dimensions
               )}
-              style={{ animationDelay: `${index * animationDelayStep}s` }}
+              style={{ 
+                animationDelay: `${index * animationDelayStep}s`,
+              }}
             >
-              <div className="bg-transparent rounded-[calc(var(--radius)-2px)] h-full flex flex-col"> {/* Inner background for content */}
-                <div className="relative w-full h-48 sm:h-56">
+              {/* Inner div for content, border animation clips to this */}
+              <div className="bg-card rounded-[calc(var(--radius)-2px)] h-full flex flex-col overflow-hidden">
+                <div className="relative w-full h-40 sm:h-48 flex-shrink-0"> {/* Fixed height for image container */}
                   <Image
                     src={project.imageUrl}
                     alt={project.title}
                     layout="fill"
                     objectFit="cover"
-                    className="transition-transform duration-500 group-hover:scale-105"
+                    className="transition-transform duration-500" // Removed group-hover:scale-105 as hover is on entire card
                     data-ai-hint={project.imageHint}
                   />
                 </div>
-                <CardHeader>
-                  <CardTitle className="font-headline text-2xl text-accent">{project.title}</CardTitle>
-                  <CardDescription className="font-body text-foreground/80 h-16 line-clamp-3">{project.description}</CardDescription>
+                <CardHeader className="pt-4 pb-2 flex-shrink-0">
+                  <CardTitle className="font-headline text-xl sm:text-2xl text-accent">{project.title}</CardTitle>
+                  <CardDescription className="font-body text-foreground/80 h-16 sm:h-20 line-clamp-3 sm:line-clamp-4 leading-snug"> {/* Adjusted height and line-clamp */}
+                    {project.description}
+                  </CardDescription>
                 </CardHeader>
-                <CardContent className="flex-grow">
-                  <div className="mb-4">
-                    <h4 className="font-semibold text-sm mb-2 text-foreground">Tech Stack:</h4>
-                    <div className="flex flex-wrap gap-2">
+                <CardContent className="flex-grow flex flex-col justify-end pt-2 pb-3"> {/* Adjusted padding */}
+                  <div className="mb-2">
+                    <h4 className="font-semibold text-xs sm:text-sm mb-1.5 text-foreground">Tech Stack:</h4>
+                    <div className="flex flex-wrap gap-1 sm:gap-1.5">
                       {project.techStack.map((tech) => (
-                        <Badge key={tech} variant="secondary" className="font-code">{tech}</Badge>
+                        <Badge key={tech} variant="secondary" className="font-code text-xs px-1.5 py-0.5 sm:px-2"> {/* Smaller badges */}
+                          {tech}
+                        </Badge>
                       ))}
                     </div>
                   </div>
                 </CardContent>
-                <CardFooter className="flex justify-start space-x-3 pt-0">
+                <CardFooter className="flex justify-start space-x-2 sm:space-x-3 pt-0 pb-3 flex-shrink-0"> {/* Adjusted padding and spacing */}
                   {project.githubUrl && (
-                    <Button asChild variant="outline" className="border-primary text-primary hover:bg-primary/10">
+                    <Button asChild variant="outline" size="sm" className="border-primary text-primary hover:bg-primary/10 text-xs sm:text-sm">
                       <Link href={project.githubUrl} target="_blank" rel="noopener noreferrer">
-                        <Github className="mr-2 h-4 w-4" /> GitHub
+                        <Github className="mr-1.5 h-3.5 w-3.5 sm:h-4 sm:w-4" /> GitHub
                       </Link>
                     </Button>
                   )}
                   {project.demoUrl && (
-                    <Button asChild className="bg-accent hover:bg-accent/90 text-accent-foreground">
+                    <Button asChild size="sm" className="bg-accent hover:bg-accent/90 text-accent-foreground text-xs sm:text-sm">
                       <Link href={project.demoUrl} target="_blank" rel="noopener noreferrer">
-                        <ExternalLink className="mr-2 h-4 w-4" /> Live Demo
+                        <ExternalLink className="mr-1.5 h-3.5 w-3.5 sm:h-4 sm:w-4" /> Live Demo
                       </Link>
                     </Button>
                   )}
