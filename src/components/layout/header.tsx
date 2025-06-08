@@ -45,9 +45,7 @@ export function Header() {
               />
             </div>
             <span className="text-base font-headline font-medium text-primary opacity-90">Hi!</span>
-            <Link href="#home" className="text-2xl font-headline font-bold text-primary hover:opacity-80 transition-opacity">
-              Bidya
-            </Link>
+           
           </div>
 
           <nav className="hidden md:flex items-center space-x-6">
