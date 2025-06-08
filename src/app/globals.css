@@ -159,7 +159,7 @@ body {
 
   /* Card Orbital Cycle Animation */
   .animate-card-orbital-cycle {
-    animation: card-orbital-cycle 6s ease-in-out infinite; /* Increased duration for smoother transitions */
+    animation: card-orbital-cycle 8s linear infinite; /* Changed from ease-in-out to linear, adjusted duration */
     transform-style: preserve-3d;
   }
   
