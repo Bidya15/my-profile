@@ -209,12 +209,12 @@ body {
 
 @keyframes card-orbital-cycle {
   0% {
-    transform: perspective(1000px) rotateY(-8deg) scale(0.95) translateZ(-20px);
+    transform: rotateY(-10deg) scale(0.95) translateZ(-20px);
   }
   50% {
-    transform: perspective(1000px) rotateY(8deg) scale(1.03) translateZ(20px);
+    transform: rotateY(10deg) scale(1.03) translateZ(20px);
   }
   100% {
-    transform: perspective(1000px) rotateY(-8deg) scale(0.95) translateZ(-20px);
+    transform: rotateY(-10deg) scale(0.95) translateZ(-20px);
   }
 }
