@@ -31,7 +31,7 @@ export function HeroSection() {
             </Link>
           </Button>
           <Button asChild variant="outline" size="lg" className="w-full sm:w-auto border-primary text-primary hover:bg-primary/10">
-            <a href={RESUME_PATH} download>
+            <a href={RESUME_PATH} target="_blank" rel="noopener noreferrer">
               <ArrowDownToLine className="mr-2 h-5 w-5" /> Download Resume
             </a>
           </Button>
