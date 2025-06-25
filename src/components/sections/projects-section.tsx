@@ -2,7 +2,6 @@
 "use client";
 
 import Image from 'next/image';
-import Link from 'next/link';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
@@ -100,7 +99,7 @@ export function ProjectsSection() {
 
     offsetX.current = newOffsetX;
     marqueeTrackRef.current.style.transform = `translateX(${offsetX.current}px)`;
-  }, [isDragging, DRAG_SENSITIVITY]);
+  }, [isDragging]);
 
   const handlePointerUpOrLeave = (e: React.PointerEvent<HTMLDivElement>) => {
     if (isDragging) {
@@ -169,13 +168,10 @@ export function ProjectsSection() {
           className="overflow-hidden whitespace-nowrap relative group"
           style={{ cursor: isDragging ? 'grabbing' : 'grab', touchAction: 'pan-y' }}
           onPointerDown={handlePointerDown}
-          // onPointerMove={isDragging ? handlePointerMove : undefined} - Handled by global listener
-          // onPointerUp={handlePointerUpOrLeave} - Handled by global listener
-          // onPointerLeave={handlePointerUpOrLeave} - Handled by global listener
         >
           <div
             ref={marqueeTrackRef}
-            className="flex py-4 will-change-transform" // Animation class removed
+            className="flex py-4 will-change-transform"
           >
             {displayProjects.map((project, index) => (
               <div
@@ -185,7 +181,6 @@ export function ProjectsSection() {
                 onMouseEnter={() => setIsPausedByCardHover(true)}
                 onMouseLeave={() => {
                   setIsPausedByCardHover(false);
-                  // If not dragging and animation was paused by this card, resume it
                   if (!isDragging && !animationFrameId.current) {
                     animationFrameId.current = requestAnimationFrame(animateMarquee);
                   }
@@ -229,16 +224,16 @@ export function ProjectsSection() {
                     <CardFooter className="flex justify-start space-x-1 sm:space-x-1.5 pt-0 pb-1.5 px-1.5 sm:px-2 flex-shrink-0">
                       {project.githubUrl && (
                         <Button asChild variant="outline" size="sm" className="border-primary text-primary hover:bg-primary/10 text-[8px] xs:text-[9px] px-1 py-0.5 h-5 xs:h-6 sm:h-7">
-                          <Link href={project.githubUrl} target="_blank" rel="noopener noreferrer">
+                          <a href={project.githubUrl} target="_blank" rel="noopener noreferrer">
                             <Github className="mr-0.5 xs:mr-1 h-2 w-2 xs:h-2.5 xs:w-2.5 sm:h-3 sm:w-3" /> GitHub
-                          </Link>
+                          </a>
                         </Button>
                       )}
                       {project.demoUrl && (
                         <Button asChild size="sm" className="bg-accent hover:bg-accent/90 text-accent-foreground text-[8px] xs:text-[9px] px-1 py-0.5 h-5 xs:h-6 sm:h-7">
-                          <Link href={project.demoUrl} target="_blank" rel="noopener noreferrer">
+                          <a href={project.demoUrl} target="_blank" rel="noopener noreferrer">
                             <ExternalLink className="mr-0.5 xs:mr-1 h-2 w-2 xs:h-2.5 xs:w-2.5 sm:h-3 sm:w-3" /> Live Demo
-                          </Link>
+                          </a>
                         </Button>
                       )}
                     </CardFooter>
@@ -256,4 +251,3 @@ export function ProjectsSection() {
     </section>
   );
 }
-

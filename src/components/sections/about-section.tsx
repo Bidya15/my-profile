@@ -33,7 +33,7 @@ export function AboutSection() {
               My goal is to build software that is not only functional and efficient but also provides a great user experience. I&apos;m constantly learning and exploring new technologies to stay at the forefront of web development.
             </p>
             <Button asChild variant="outline" size="lg" className="border-accent text-accent hover:bg-accent/10">
-              <a href={RESUME_PATH} download="Bidya_S_Rongpi_Resume.pdf">
+              <a href={RESUME_PATH} download="/resume.pdf">
                 <ArrowDownToLine className="mr-2 h-5 w-5" /> Download Resume
               </a>
             </Button>

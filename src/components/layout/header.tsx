@@ -36,7 +36,7 @@ export function Header() {
           <div className="flex items-center gap-2 -ml-2"> {/* Added -ml-2 here */}
             <div className="animate-avatar-bob">
               <Image
-                src="https://placehold.co/32x32.png" 
+                src="/Avater.png" 
                 alt="Avatar"
                 width={32}
                 height={32}

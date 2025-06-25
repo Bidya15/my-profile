@@ -101,7 +101,7 @@ export function ContactSection() {
                   <FormItem>
                     <FormLabel className="font-body text-foreground">Email</FormLabel>
                     <FormControl>
-                      <Input type="email" placeholder="your.email@example.com" {...field} className="font-body bg-background"/>
+                      <Input type="email" placeholder="your@email.com" {...field} className="font-body bg-background"/>
                     </FormControl>
                     <FormMessage />
                   </FormItem>
