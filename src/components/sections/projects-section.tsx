@@ -229,7 +229,7 @@ export function ProjectsSection() {
                           </a>
                         </Button>
                       )}
-                      {project.demoUrl && (
+                      {project.demoUrl && project.demoUrl !== '#' && (
                         <Button asChild size="sm" className="bg-accent hover:bg-accent/90 text-accent-foreground text-[8px] xs:text-[9px] px-1 py-0.5 h-5 xs:h-6 sm:h-7">
                           <a href={project.demoUrl} target="_blank" rel="noopener noreferrer">
                             <ExternalLink className="mr-0.5 xs:mr-1 h-2 w-2 xs:h-2.5 xs:w-2.5 sm:h-3 sm:w-3" /> Live Demo
