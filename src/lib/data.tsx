@@ -189,22 +189,7 @@ export const experiences: Experience[] = [
     logoUrl: 'https://placehold.co/100x100.png',
     logoHint: 'company logo tech',
   },
-  {
-    id: 'exp2',
-    company: 'Creative Tech Agency',
-    title: 'Full Stack Developer',
-    duration: 'July 2019 - May 2022',
-    location: 'San Francisco, CA',
-    description: [
-      'Developed responsive web applications for diverse clients using React, Node.js, and Python.',
-      'Integrated third-party APIs for payment gateways, social media, and analytics.',
-      'Contributed to all phases of the SDLC, from requirement gathering to deployment and support.',
-      'Received "Employee of the Year" award in 2021 for outstanding contributions.',
-    ],
-    logoUrl: 'https://placehold.co/100x100.png',
-    logoHint: 'creative agency',
-  },
-  
+ 
 ];
 
 
@@ -221,4 +206,4 @@ export const socialLinks: SocialLink[] = [
   { label: 'Email', href: 'mailto:bidyasingrongpi2004@gmail.com', Icon: Mail },
 ];
 
-export const RESUME_PATH = '/resume.pdf'; // Path to your resume in the public folder
+export const RESUME_PATH = '/Resume.pdf'; // Path to your resume in the public folder

@@ -5,34 +5,20 @@ export function AchievementsSection() {
   const achievementsList = [
     { 
       id: 1, 
-      text: "Led the development of a new client portal, resulting in a 25% improvement in user satisfaction scores - Tech Solutions Inc. (2023)", 
+      text: "Adavantage Assam 2.0 Quiz competition, Securing rank 52 out of 2000 participants.", 
       Icon: Zap 
     },
     { 
       id: 2, 
-      text: "Awarded 'Innovator of the Quarter' for designing a novel algorithm that reduced data processing time by 40% - Data Corp (2022)", 
+      text: "National Entreprenueship Challege(NEC) 2024, IIT Bombay.", 
       Icon: Award 
     },
     { 
       id: 3, 
-      text: "Successfully migrated a monolithic legacy system to a microservices architecture, enhancing scalability and reducing downtime by 15% - Enterprise Ltd. (2021)", 
+      text: "ATF-2024, Algo University Fellowship program, securing rank under 2000 out of 20000 participants of coding contast.", 
       Icon: TrendingUp 
     },
-    { 
-      id: 4, 
-      text: "Published a well-received article on 'Advanced State Management in React' on a popular developer blog, garnering over 10,000 views - DevInsights (2023)", 
-      Icon: Edit3 
-    },
-     { 
-      id: 5, 
-      text: "Mentored a team of 5 junior developers, leading to significant skill improvement and successful project deliveries - CodeCrafters (2022-2024)", 
-      Icon: Users 
-    },
-    { 
-      id: 6, 
-      text: "Achieved AWS Certified Solutions Architect - Associate certification, demonstrating expertise in cloud infrastructure design - Amazon Web Services (2024)", 
-      Icon: CheckCircle 
-    },
+    
   ];
 
   return (
