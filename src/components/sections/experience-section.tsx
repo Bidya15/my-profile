@@ -17,7 +17,7 @@ export function ExperienceSection() {
               <div className="bg-card rounded-[calc(var(--radius)-2px)] h-full p-6 sm:p-8 shadow-lg group-hover:shadow-primary/20 transition-shadow duration-300">
                 <div className="flex flex-col sm:flex-row items-start mb-4">
                   {exp.logoUrl && (
-                    <div className="relative w-16 h-16 sm:w-20 sm:h-20 mr-0 sm:mr-6 mb-4 sm:mb-0 rounded-md overflow-hidden border border-border flex-shrink-0">
+                    <div className="relative w-16 h-16 sm:w-20 sm:h-20 mr-0 sm:mr-6 mb-4 sm:mb-0 rounded-md overflow-hidden border border-border flex-shrink-0 bg-secondary p-1">
                       <Image
                         src={exp.logoUrl}
                         alt={`${exp.company} logo`}

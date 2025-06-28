@@ -171,4 +171,4 @@ export const socialLinks: SocialLink[] = [
   { label: 'Email', href: 'mailto:bidya.rongpi@example.com', Icon: Mail },
 ];
 
-export const RESUME_PATH = '/resume.pdf'; // Path to your resume in the public folder
+export const RESUME_PATH = '/Resume.pdf'; // Path to your resume in the public folder

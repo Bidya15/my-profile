@@ -186,7 +186,7 @@ export const experiences: Experience[] = [
       'Maintain, and update the existing website. ',
       'Championed Agile methodologies, enhancing team productivity and cross-functional collaboration.',
     ],
-    logoUrl: 'https://placehold.co/100x100.png',
+    logoUrl: '/EDC-logo.png',
     logoHint: 'company logo tech',
   },
  
