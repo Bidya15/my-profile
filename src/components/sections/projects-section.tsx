@@ -66,6 +66,11 @@ export function ProjectsSection() {
   }, [animateMarquee]);
 
   const handlePointerDown = (e: React.PointerEvent<HTMLDivElement>) => {
+    const target = e.target as HTMLElement;
+    if (target.closest('a, button')) {
+      return;
+    }
+    
     if (!marqueeTrackRef.current || !viewportRef.current) return;
     setIsDragging(true);
     dragAnchorX.current = e.clientX;
