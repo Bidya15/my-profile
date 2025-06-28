@@ -83,26 +83,26 @@ export const skillCategories: SkillCategory[] = [
     title: 'Backend Development',
     skills: [
       { name: 'Node.js & Express', Icon: Server, level: 85, BrandIconComponent: NodeJsBrandIcon },
-      { name: 'Python & Django/Flask', Icon: Server, level: 70 },
-      { name: 'Java & Spring Boot', Icon: Server, level: 65 },
+      //{ name: 'Python & Django/Flask', Icon: Server, level: 70 },
+      //{ name: 'Java & Spring Boot', Icon: Server, level: 65 },
       { name: 'SQL (PostgreSQL, MySQL)', Icon: Database, level: 80 },
       { name: 'NoSQL (MongoDB, Firebase)', Icon: Database, level: 75 },
-      { name: 'REST APIs & GraphQL', Icon: Settings, level: 88 },
+      //{ name: 'REST APIs & GraphQL', Icon: Settings, level: 88 },
     ],
   },
-  {
+  /*{
     title: 'Mobile Development',
     skills: [
       { name: 'React Native', Icon: Smartphone, level: 70, BrandIconComponent: ReactBrandIcon },
       { name: 'Flutter', Icon: Smartphone, level: 60 },
     ],
-  },
+  },*/
   {
     title: 'Tools & DevOps',
     skills: [
       { name: 'Git & GitHub', Icon: Github, level: 90 },
-      { name: 'Docker', Icon: Settings, level: 70 },
-      { name: 'CI/CD', Icon: Settings, level: 65 },
+      //{ name: 'Docker', Icon: Settings, level: 70 },
+      //{ name: 'CI/CD', Icon: Settings, level: 65 },
       { name: 'VS Code', Icon: Codepen, level: 95 },
     ],
   },

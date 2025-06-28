@@ -18,7 +18,8 @@ import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { useToast } from "@/hooks/use-toast"
 import { socialLinks } from '@/lib/data.tsx';
-import { Send } from "lucide-react"
+import { Send, Loader2 } from "lucide-react"
+import { handleContactMessage } from "@/ai/flows/contact-flow"
 
 const formSchema = z.object({
   name: z.string().min(2, {
@@ -46,14 +47,24 @@ export function ContactSection() {
     },
   })
 
-  // Placeholder onSubmit function
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log(values) // In a real app, you'd send this data to a backend
-    toast({
-      title: "Message Sent!",
-      description: "Thanks for reaching out. I'll get back to you soon.",
-    });
-    form.reset(); // Reset form after submission
+  const { isSubmitting } = form.formState;
+
+  async function onSubmit(values: z.infer<typeof formSchema>) {
+    try {
+      const result = await handleContactMessage(values);
+      toast({
+        title: "Message Sent!",
+        description: result.reply,
+      });
+      form.reset();
+    } catch (error) {
+      console.error("Failed to send message:", error);
+      toast({
+        variant: "destructive",
+        title: "Uh oh! Something went wrong.",
+        description: "There was a problem sending your message. Please try again.",
+      });
+    }
   }
 
   return (
@@ -120,8 +131,17 @@ export function ContactSection() {
                   </FormItem>
                 )}
               />
-              <Button type="submit" size="lg" className="w-full bg-primary hover:bg-primary/90 text-primary-foreground">
-                <Send className="mr-2 h-5 w-5" /> Send Message
+              <Button type="submit" size="lg" className="w-full bg-primary hover:bg-primary/90 text-primary-foreground" disabled={isSubmitting}>
+                {isSubmitting ? (
+                  <>
+                    <Loader2 className="mr-2 h-5 w-5 animate-spin" />
+                    Sending...
+                  </>
+                ) : (
+                  <>
+                    <Send className="mr-2 h-5 w-5" /> Send Message
+                  </>
+                )}
               </Button>
             </form>
           </Form>

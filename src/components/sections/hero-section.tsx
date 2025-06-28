@@ -18,7 +18,7 @@ export function HeroSection() {
             Bidya S. Rongpi
           </span>
           <span className="block text-xl sm:text-2xl md:text-3xl text-foreground/80 mt-2 animate-subtitle-glow-fade">
-            A Full Stack Developer
+            A FrontEnd Developer || Full Stack Developer Freak
           </span>
         </h1>
         <p className="font-body text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-10">
