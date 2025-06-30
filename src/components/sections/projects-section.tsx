@@ -1,14 +1,20 @@
-
 "use client";
 
-import Image from 'next/image';
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
-import { Button } from '@/components/ui/button';
-import { Github, ExternalLink, Move } from 'lucide-react';
-import { projects } from '@/lib/data';
-import { cn } from '@/lib/utils';
-import { useRef, useState, useEffect, useCallback } from 'react';
+import Image from "next/image";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Github, ExternalLink, Move } from "lucide-react";
+import { projects } from "@/lib/data";
+import { cn } from "@/lib/utils";
+import { useRef, useState, useEffect, useCallback } from "react";
 
 const BASE_SPEED = 1.0; // Increased speed, adjust as needed
 const DRAG_SENSITIVITY = 1.5;
@@ -35,12 +41,14 @@ export function ProjectsSection() {
 
       offsetX.current -= currentDirection.current * BASE_SPEED;
 
-      if (currentDirection.current === 1) { // Moving RTL (towards left of screen)
+      if (currentDirection.current === 1) {
+        // Moving RTL (towards left of screen)
         if (offsetX.current <= leftBoundary) {
           offsetX.current = leftBoundary;
           currentDirection.current = -1; // Change to LTR
         }
-      } else { // Moving LTR (towards right of screen)
+      } else {
+        // Moving LTR (towards right of screen)
         if (offsetX.current >= rightBoundary) {
           offsetX.current = rightBoundary;
           currentDirection.current = 1; // Change to RTL
@@ -67,17 +75,17 @@ export function ProjectsSection() {
 
   const handlePointerDown = (e: React.PointerEvent<HTMLDivElement>) => {
     const target = e.target as HTMLElement;
-    if (target.closest('a, button')) {
+    if (target.closest("a, button")) {
       return;
     }
-    
+
     if (!marqueeTrackRef.current || !viewportRef.current) return;
     setIsDragging(true);
     dragAnchorX.current = e.clientX;
     scrollAnchorX.current = offsetX.current;
-    viewportRef.current.style.cursor = 'grabbing';
+    viewportRef.current.style.cursor = "grabbing";
     if (marqueeTrackRef.current) {
-      marqueeTrackRef.current.style.transition = 'none';
+      marqueeTrackRef.current.style.transition = "none";
     }
     if (animationFrameId.current) {
       cancelAnimationFrame(animationFrameId.current);
@@ -86,34 +94,37 @@ export function ProjectsSection() {
     e.currentTarget.setPointerCapture(e.pointerId);
   };
 
-  const handlePointerMove = useCallback((e: React.PointerEvent<HTMLDivElement>) => {
-    if (!isDragging || !marqueeTrackRef.current) return;
+  const handlePointerMove = useCallback(
+    (e: React.PointerEvent<HTMLDivElement>) => {
+      if (!isDragging || !marqueeTrackRef.current) return;
 
-    const deltaX = e.clientX - dragAnchorX.current;
-    let newOffsetX = scrollAnchorX.current + deltaX * DRAG_SENSITIVITY;
-    const contentSetWidth = marqueeTrackRef.current.scrollWidth / 3;
+      const deltaX = e.clientX - dragAnchorX.current;
+      let newOffsetX = scrollAnchorX.current + deltaX * DRAG_SENSITIVITY;
+      const contentSetWidth = marqueeTrackRef.current.scrollWidth / 3;
 
-    // Infinite scroll illusion logic
-    if (newOffsetX > 0) {
-      newOffsetX -= contentSetWidth;
-      scrollAnchorX.current -= contentSetWidth;
-    } else if (newOffsetX < -contentSetWidth * 2) {
-      newOffsetX += contentSetWidth;
-      scrollAnchorX.current += contentSetWidth;
-    }
+      // Infinite scroll illusion logic
+      if (newOffsetX > 0) {
+        newOffsetX -= contentSetWidth;
+        scrollAnchorX.current -= contentSetWidth;
+      } else if (newOffsetX < -contentSetWidth * 2) {
+        newOffsetX += contentSetWidth;
+        scrollAnchorX.current += contentSetWidth;
+      }
 
-    offsetX.current = newOffsetX;
-    marqueeTrackRef.current.style.transform = `translateX(${offsetX.current}px)`;
-  }, [isDragging]);
+      offsetX.current = newOffsetX;
+      marqueeTrackRef.current.style.transform = `translateX(${offsetX.current}px)`;
+    },
+    [isDragging]
+  );
 
   const handlePointerUpOrLeave = (e: React.PointerEvent<HTMLDivElement>) => {
     if (isDragging) {
       setIsDragging(false);
       if (viewportRef.current) {
-        viewportRef.current.style.cursor = 'grab';
+        viewportRef.current.style.cursor = "grab";
       }
       if (marqueeTrackRef.current) {
-         // Optionally add a smooth transition back if desired, or remove for immediate effect
+        // Optionally add a smooth transition back if desired, or remove for immediate effect
         // marqueeTrackRef.current.style.transition = 'transform 0.2s ease-out';
       }
       if (!animationFrameId.current && !isPausedByCardHover) {
@@ -122,45 +133,47 @@ export function ProjectsSection() {
       e.currentTarget.releasePointerCapture(e.pointerId);
     }
   };
-  
+
   // Effect for global listeners for dragging outside viewport
   useEffect(() => {
-    const currentViewport = viewportRef.current; 
+    const currentViewport = viewportRef.current;
 
     const onMove = (event: PointerEvent) => {
       if (isDragging) {
-         const syntheticEvent = event as unknown as React.PointerEvent<HTMLDivElement>;
-         handlePointerMove(syntheticEvent);
+        const syntheticEvent =
+          event as unknown as React.PointerEvent<HTMLDivElement>;
+        handlePointerMove(syntheticEvent);
       }
     };
 
     const onUp = (event: PointerEvent) => {
       if (isDragging) {
-         const syntheticEvent = event as unknown as React.PointerEvent<HTMLDivElement>;
+        const syntheticEvent =
+          event as unknown as React.PointerEvent<HTMLDivElement>;
         setIsDragging(false);
-        if (currentViewport) { 
-            currentViewport.style.cursor = 'grab';
+        if (currentViewport) {
+          currentViewport.style.cursor = "grab";
         }
-        if (!animationFrameId.current && !isPausedByCardHover) { // Resume animation if not paused by card
-            animationFrameId.current = requestAnimationFrame(animateMarquee);
+        if (!animationFrameId.current && !isPausedByCardHover) {
+          // Resume animation if not paused by card
+          animationFrameId.current = requestAnimationFrame(animateMarquee);
         }
       }
     };
-    
+
     if (isDragging) {
-      document.addEventListener('pointermove', onMove);
-      document.addEventListener('pointerup', onUp);
+      document.addEventListener("pointermove", onMove);
+      document.addEventListener("pointerup", onUp);
     }
 
     return () => {
-      document.removeEventListener('pointermove', onMove);
-      document.removeEventListener('pointerup', onUp);
-       if (isDragging && currentViewport) { 
-           currentViewport.style.cursor = 'grab';
-       }
+      document.removeEventListener("pointermove", onMove);
+      document.removeEventListener("pointerup", onUp);
+      if (isDragging && currentViewport) {
+        currentViewport.style.cursor = "grab";
+      }
     };
   }, [isDragging, handlePointerMove, animateMarquee, isPausedByCardHover]);
-
 
   return (
     <section id="projects" className="py-16 sm:py-24 bg-background/80">
@@ -171,7 +184,10 @@ export function ProjectsSection() {
         <div
           ref={viewportRef}
           className="overflow-hidden whitespace-nowrap relative group"
-          style={{ cursor: isDragging ? 'grabbing' : 'grab', touchAction: 'pan-y' }}
+          style={{
+            cursor: isDragging ? "grabbing" : "grab",
+            touchAction: "pan-y",
+          }}
           onPointerDown={handlePointerDown}
         >
           <div
@@ -182,12 +198,13 @@ export function ProjectsSection() {
               <div
                 key={`${project.id}-${index}`}
                 className="mx-3 flex-shrink-0"
-                style={{ userSelect: 'none' }}
+                style={{ userSelect: "none" }}
                 onMouseEnter={() => setIsPausedByCardHover(true)}
                 onMouseLeave={() => {
                   setIsPausedByCardHover(false);
                   if (!isDragging && !animationFrameId.current) {
-                    animationFrameId.current = requestAnimationFrame(animateMarquee);
+                    animationFrameId.current =
+                      requestAnimationFrame(animateMarquee);
                   }
                 }}
               >
@@ -209,17 +226,24 @@ export function ProjectsSection() {
                       />
                     </div>
                     <CardHeader className="pt-1.5 pb-0 xs:pt-2 xs:pb-0.5 flex-shrink-0 px-1.5 sm:px-2">
-                      <CardTitle className="font-headline text-sm sm:text-base md:text-lg text-accent">{project.title}</CardTitle>
+                      <CardTitle className="font-headline text-sm sm:text-base md:text-lg text-accent">
+                        {project.title}
+                      </CardTitle>
                       <CardDescription className="font-body text-[10px] xs:text-xs sm:text-sm text-foreground/80 h-8 xs:h-10 sm:h-12 line-clamp-2 sm:line-clamp-3 leading-snug mt-0.5">
                         {project.description}
                       </CardDescription>
                     </CardHeader>
                     <CardContent className="flex-grow flex flex-col justify-end pt-0.5 pb-1 px-1.5 sm:px-2">
                       <div className="mb-0.5 sm:mb-1">
-                        <h4 className="font-semibold text-[9px] xs:text-[10px] sm:text-xs mb-0.5 text-foreground">Tech Stack:</h4>
+                        <h4 className="font-semibold text-[9px] xs:text-[10px] sm:text-xs mb-0.5 text-foreground">
+                          Tech Stack:
+                        </h4>
                         <div className="flex flex-wrap gap-0.5">
                           {project.techStack.map((tech) => (
-                            <Badge key={tech} className="font-code text-[8px] xs:text-[9px] sm:text-[10px] px-1 py-0.5">
+                            <Badge
+                              key={tech}
+                              className="font-code text-[8px] xs:text-[9px] sm:text-[10px] px-1 py-0.5"
+                            >
                               {tech}
                             </Badge>
                           ))}
@@ -228,16 +252,32 @@ export function ProjectsSection() {
                     </CardContent>
                     <CardFooter className="flex justify-start space-x-1 sm:space-x-1.5 pt-0 pb-1.5 px-1.5 sm:px-2 flex-shrink-0">
                       {project.githubUrl && (
-                        <Button asChild className="border-primary text-primary hover:bg-primary/10 text-[8px] xs:text-[9px] px-1 py-0.5 h-5 xs:h-6 sm:h-7">
-                          <a href={project.githubUrl} target="_blank" rel="noopener noreferrer">
-                            <Github className="mr-0.5 xs:mr-1 h-2 w-2 xs:h-2.5 xs:w-2.5 sm:h-3 sm:w-3" /> GitHub
+                        <Button
+                          asChild
+                          className="border-primary hover:bg-primary/10 text-[8px] xs:text-[9px] px-1 py-0.5 h-5 xs:h-6 sm:h-7"
+                        >
+                          <a
+                            href={project.githubUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                            <Github className="mr-0.5 xs:mr-1 h-2 w-2 xs:h-2.5 xs:w-2.5 sm:h-3 sm:w-3" />{" "}
+                            GitHub
                           </a>
                         </Button>
                       )}
-                      {project.demoUrl && project.demoUrl !== '#' && (
-                        <Button asChild className="bg-accent hover:bg-accent/90 text-accent-foreground text-[8px] xs:text-[9px] px-1 py-0.5 h-5 xs:h-6 sm:h-7">
-                          <a href={project.demoUrl} target="_blank" rel="noopener noreferrer">
-                            <ExternalLink className="mr-0.5 xs:mr-1 h-2 w-2 xs:h-2.5 xs:w-2.5 sm:h-3 sm:w-3" /> Live Demo
+                      {project.demoUrl && project.demoUrl !== "#" && (
+                        <Button
+                          asChild
+                          className="bg-accent hover:bg-accent/90 text-accent-foreground text-[8px] xs:text-[9px] px-1 py-0.5 h-5 xs:h-6 sm:h-7"
+                        >
+                          <a
+                            href={project.demoUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                            <ExternalLink className="mr-0.5 xs:mr-1 h-2 w-2 xs:h-2.5 xs:w-2.5 sm:h-3 sm:w-3" />{" "}
+                            Live Demo
                           </a>
                         </Button>
                       )}

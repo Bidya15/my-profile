@@ -11,7 +11,7 @@ export function AchievementsSection() {
   const achievementsList = [
     {
       id: 1,
-      text: "Completion Certificate of 'Technology Job Simulation' from Deloitte'",
+      text: "Completion Certificate of 'Technology Job Simulation' from Deloitte",
       Icon: Award,
     },
     {
