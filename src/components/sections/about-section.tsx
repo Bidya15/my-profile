@@ -1,8 +1,7 @@
-
-import Image from 'next/image';
-import { Button } from '@/components/ui/button';
-import { ArrowDownToLine, UserCircle } from 'lucide-react';
-import { RESUME_PATH } from '@/lib/data.tsx';
+import Image from "next/image";
+import { Button } from "@/components/ui/button";
+import { ArrowDownToLine, UserCircle } from "lucide-react";
+import { RESUME_PATH } from "@/lib/data";
 
 export function AboutSection() {
   return (
@@ -27,12 +26,23 @@ export function AboutSection() {
           <div className="md:col-span-2 text-center md:text-left">
             <UserCircle className="w-12 h-12 text-accent mx-auto md:mx-0 mb-4" />
             <p className="font-body text-lg text-foreground/90 mb-6 leading-relaxed">
-              Hello! I&apos;m Bidya S. Rongpi, a dedicated Full Stack Developer with a knack for turning complex problems into elegant, user-centric solutions. With experience in both frontend and backend technologies, I enjoy the entire process of application development, from initial concept and design to deployment and maintenance.
+              Hello! I&apos;m Bidya S. Rongpi, a dedicated Full Stack Developer
+              with a knack for turning complex problems into elegant,
+              user-centric solutions. With experience in both frontend and
+              backend technologies, I enjoy the entire process of application
+              development, from initial concept and design to deployment and
+              maintenance.
             </p>
             <p className="font-body text-lg text-foreground/90 mb-8 leading-relaxed">
-              My goal is to build software that is not only functional and efficient but also provides a great user experience. I&apos;m constantly learning and exploring new technologies to stay at the forefront of web development.
+              My goal is to build software that is not only functional and
+              efficient but also provides a great user experience. I&apos;m
+              constantly learning and exploring new technologies to stay at the
+              forefront of web development.
             </p>
-            <Button asChild variant="outline" size="lg" className="border-accent text-accent hover:bg-accent/10">
+            <Button
+              asChild
+              className="border-accent text-accent hover:bg-accent/10"
+            >
               <a href={RESUME_PATH} target="_blank" rel="noopener noreferrer">
                 <ArrowDownToLine className="mr-2 h-5 w-5" /> Download Resume
               </a>

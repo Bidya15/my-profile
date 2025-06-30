@@ -17,7 +17,7 @@ import {
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { useToast } from "@/hooks/use-toast"
-import { socialLinks } from '@/lib/data.tsx';
+import { socialLinks } from '@/lib/data';
 import { Send, Loader2 } from "lucide-react"
 import { handleContactMessage } from "@/ai/flows/contact-flow"
 
@@ -80,7 +80,7 @@ export function ContactSection() {
             </p>
             <div className="space-y-4">
               {socialLinks.map(link => (
-                <Button key={link.label} variant="ghost" asChild className="w-full justify-start text-lg p-0 h-auto hover:bg-accent/10">
+                <Button key={link.label} asChild className="w-full justify-start text-lg p-0 h-auto hover:bg-accent/10">
                   <Link href={link.href} target="_blank" rel="noopener noreferrer" className="flex items-center text-foreground hover:text-accent p-2 rounded-md">
                     <link.Icon className="h-6 w-6 mr-3 text-accent" />
                     {link.label}
@@ -131,7 +131,7 @@ export function ContactSection() {
                   </FormItem>
                 )}
               />
-              <Button type="submit" size="lg" className="w-full bg-primary hover:bg-primary/90 text-primary-foreground" disabled={isSubmitting}>
+              <Button type="submit" className="w-full bg-primary hover:bg-primary/90 text-primary-foreground" disabled={isSubmitting}>
                 {isSubmitting ? (
                   <>
                     <Loader2 className="mr-2 h-5 w-5 animate-spin" />

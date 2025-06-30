@@ -6,7 +6,7 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Github, ExternalLink, Move } from 'lucide-react';
-import { projects } from '@/lib/data.tsx';
+import { projects } from '@/lib/data';
 import { cn } from '@/lib/utils';
 import { useRef, useState, useEffect, useCallback } from 'react';
 
@@ -219,7 +219,7 @@ export function ProjectsSection() {
                         <h4 className="font-semibold text-[9px] xs:text-[10px] sm:text-xs mb-0.5 text-foreground">Tech Stack:</h4>
                         <div className="flex flex-wrap gap-0.5">
                           {project.techStack.map((tech) => (
-                            <Badge key={tech} variant="secondary" className="font-code text-[8px] xs:text-[9px] sm:text-[10px] px-1 py-0.5">
+                            <Badge key={tech} className="font-code text-[8px] xs:text-[9px] sm:text-[10px] px-1 py-0.5">
                               {tech}
                             </Badge>
                           ))}
@@ -228,14 +228,14 @@ export function ProjectsSection() {
                     </CardContent>
                     <CardFooter className="flex justify-start space-x-1 sm:space-x-1.5 pt-0 pb-1.5 px-1.5 sm:px-2 flex-shrink-0">
                       {project.githubUrl && (
-                        <Button asChild variant="outline" size="sm" className="border-primary text-primary hover:bg-primary/10 text-[8px] xs:text-[9px] px-1 py-0.5 h-5 xs:h-6 sm:h-7">
+                        <Button asChild className="border-primary text-primary hover:bg-primary/10 text-[8px] xs:text-[9px] px-1 py-0.5 h-5 xs:h-6 sm:h-7">
                           <a href={project.githubUrl} target="_blank" rel="noopener noreferrer">
                             <Github className="mr-0.5 xs:mr-1 h-2 w-2 xs:h-2.5 xs:w-2.5 sm:h-3 sm:w-3" /> GitHub
                           </a>
                         </Button>
                       )}
                       {project.demoUrl && project.demoUrl !== '#' && (
-                        <Button asChild size="sm" className="bg-accent hover:bg-accent/90 text-accent-foreground text-[8px] xs:text-[9px] px-1 py-0.5 h-5 xs:h-6 sm:h-7">
+                        <Button asChild className="bg-accent hover:bg-accent/90 text-accent-foreground text-[8px] xs:text-[9px] px-1 py-0.5 h-5 xs:h-6 sm:h-7">
                           <a href={project.demoUrl} target="_blank" rel="noopener noreferrer">
                             <ExternalLink className="mr-0.5 xs:mr-1 h-2 w-2 xs:h-2.5 xs:w-2.5 sm:h-3 sm:w-3" /> Live Demo
                           </a>

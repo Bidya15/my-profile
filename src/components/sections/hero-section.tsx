@@ -5,7 +5,7 @@ import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import { ArrowDownToLine, Eye } from 'lucide-react';
 import Link from 'next/link';
-import { RESUME_PATH } from '@/lib/data.tsx';
+import { RESUME_PATH } from '@/lib/data';
 
 export function HeroSection() {
   return (
@@ -25,12 +25,12 @@ export function HeroSection() {
           Crafting seamless digital experiences from concept to deployment. Passionate about building scalable and user-friendly web applications.
         </p>
         <div className="space-y-4 sm:space-y-0 sm:space-x-4">
-          <Button asChild size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground w-full sm:w-auto">
+          <Button asChild className="bg-primary hover:bg-primary/90 text-primary-foreground w-full sm:w-auto">
             <Link href="#projects">
               <Eye className="mr-2 h-5 w-5" /> View Projects
             </Link>
           </Button>
-          <Button asChild variant="outline" size="lg" className="w-full sm:w-auto border-primary text-primary hover:bg-primary/10">
+          <Button asChild className="w-full sm:w-auto border-primary text-primary hover:bg-primary/10">
             <a href={RESUME_PATH} target="_blank" rel="noopener noreferrer">
               <ArrowDownToLine className="mr-2 h-5 w-5" /> Download Resume
             </a>

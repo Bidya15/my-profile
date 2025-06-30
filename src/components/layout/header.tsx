@@ -1,14 +1,13 @@
-
 "use client";
 
-import Link from 'next/link';
-import Image from 'next/image';
-import { Menu, X } from 'lucide-react';
-import { useState, useEffect } from 'react';
-import { Button } from '@/components/ui/button';
-import { ThemeToggle } from '@/components/theme-toggle';
-import { navItems } from '@/lib/data.tsx';
-import { cn } from '@/lib/utils';
+import Link from "next/link";
+import Image from "next/image";
+import { Menu, X } from "lucide-react";
+import { useState, useEffect } from "react";
+import { Button } from "@/components/ui/button";
+import { ThemeToggle } from "@/components/theme-toggle";
+import { navItems } from "@/lib/data";
+import { cn } from "@/lib/utils";
 
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -18,8 +17,8 @@ export function Header() {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
     };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
@@ -27,16 +26,20 @@ export function Header() {
   return (
     <header
       className={cn(
-        'fixed top-0 left-0 right-0 z-50 transition-all duration-300',
-        isScrolled || isMenuOpen ? 'bg-background/80 backdrop-blur-md shadow-md' : 'bg-transparent'
+        "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
+        isScrolled || isMenuOpen
+          ? "bg-background/80 backdrop-blur-md shadow-md"
+          : "bg-transparent"
       )}
     >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
-          <div className="flex items-center gap-2 -ml-2"> {/* Added -ml-2 here */}
+          <div className="flex items-center gap-2 -ml-2">
+            {" "}
+            {/* Added -ml-2 here */}
             <div className="animate-avatar-bob">
               <Image
-                src="/Avater.png" 
+                src="/Avater.png"
                 alt="Avatar"
                 width={32}
                 height={32}
@@ -44,8 +47,9 @@ export function Header() {
                 data-ai-hint="friendly face small"
               />
             </div>
-            <span className="text-base font-headline font-medium text-primary opacity-90">Hi!</span>
-           
+            <span className="text-base font-headline font-medium text-primary opacity-90">
+              Hi!
+            </span>
           </div>
 
           <nav className="hidden md:flex items-center space-x-6">
@@ -63,8 +67,15 @@ export function Header() {
 
           <div className="md:hidden flex items-center">
             <ThemeToggle />
-            <Button variant="ghost" size="icon" onClick={toggleMenu} className="ml-2">
-              {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+            <Button
+              onClick={toggleMenu}
+              className="ml-2"
+            >
+              {isMenuOpen ? (
+                <X className="h-6 w-6" />
+              ) : (
+                <Menu className="h-6 w-6" />
+              )}
               <span className="sr-only">Toggle menu</span>
             </Button>
           </div>

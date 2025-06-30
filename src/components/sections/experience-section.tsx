@@ -1,7 +1,6 @@
-
-import Image from 'next/image';
-import { experiences } from '@/lib/data.tsx';
-import { Briefcase, MapPin } from 'lucide-react';
+import Image from "next/image";
+import { experiences } from "@/lib/data"; // Make sure 'experiences' is exported from '@/lib/data'
+import { Briefcase, MapPin } from "lucide-react";
 
 export function ExperienceSection() {
   return (
@@ -23,13 +22,17 @@ export function ExperienceSection() {
                         alt={`${exp.company} logo`}
                         layout="fill"
                         objectFit="contain"
-                        data-ai-hint={exp.logoHint || 'company logo'}
+                        data-ai-hint={exp.logoHint || "company logo"}
                       />
                     </div>
                   )}
                   <div className="flex-grow">
-                    <h3 className="text-xl sm:text-2xl font-headline font-semibold text-accent">{exp.title}</h3>
-                    <p className="text-lg font-body font-medium text-foreground/90">{exp.company}</p>
+                    <h3 className="text-xl sm:text-2xl font-headline font-semibold text-accent">
+                      {exp.title}
+                    </h3>
+                    <p className="text-lg font-body font-medium text-foreground/90">
+                      {exp.company}
+                    </p>
                     <div className="flex flex-wrap items-center text-sm text-muted-foreground mt-1">
                       <span>{exp.duration}</span>
                       {exp.location && (
@@ -45,7 +48,9 @@ export function ExperienceSection() {
                 </div>
                 <ul className="list-disc list-inside space-y-2 font-body text-foreground/80 pl-1">
                   {exp.description.map((point, index) => (
-                    <li key={index} className="leading-relaxed">{point}</li>
+                    <li key={index} className="leading-relaxed">
+                      {point}
+                    </li>
                   ))}
                 </ul>
               </div>
