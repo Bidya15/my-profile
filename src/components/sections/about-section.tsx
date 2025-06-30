@@ -41,7 +41,7 @@ export function AboutSection() {
             </p>
             <Button
               asChild
-              className="border-accent text-accent hover:bg-accent/10"
+              className="w-full sm:w-auto border-primary hover:bg-primary/10"
             >
               <a href={RESUME_PATH} target="_blank" rel="noopener noreferrer">
                 <ArrowDownToLine className="mr-2 h-5 w-5" /> Download Resume
